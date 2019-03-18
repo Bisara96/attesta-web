@@ -1,0 +1,10 @@
+<nb-card size="medium">
+  <nb-card-header>
+    User Stories
+  </nb-card-header>
+  <nb-list>
+    <nb-list-item *ngFor="let story of userStories">
+      {{ story.description }}
+    </nb-list-item>
+  </nb-list>
+</nb-card>
