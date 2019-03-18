@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsModule, NbSearchModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsModule, NbSearchModule, NbButtonModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [],
@@ -11,7 +11,8 @@ import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsMod
     NbListModule,
     NbCardModule,
     NbActionsModule,
-    NbSearchModule
+    NbSearchModule,
+    NbButtonModule
   ],
   exports: [
     NbThemeModule,
@@ -19,7 +20,8 @@ import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsMod
     NbListModule,
     NbCardModule,
     NbActionsModule,
-    NbSearchModule
+    NbSearchModule,
+    NbButtonModule
   ]
 })
 export class NgbCompsModule { }
