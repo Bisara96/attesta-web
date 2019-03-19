@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsModule, NbSearchModule, NbButtonModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsModule, NbSearchModule, NbButtonModule, NbDialogModule, NbInputModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
     NbListModule,
     NbCardModule,
-    NbActionsModule,
-    NbSearchModule,
-    NbButtonModule
+    NbButtonModule,
+    NbDialogModule.forChild({hasBackdrop: true, closeOnBackdropClick: false}),
+    NbInputModule
   ],
   exports: [
-    NbThemeModule,
-    NbLayoutModule,
     NbListModule,
     NbCardModule,
-    NbActionsModule,
-    NbSearchModule,
-    NbButtonModule
+    NbButtonModule,
+    NbDialogModule,
+    NbInputModule
   ]
 })
 export class NgbCompsModule { }

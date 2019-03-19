@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { InitiateRecordComponent } from '../../dialogs/initiate-record/initiate-record.component';
+import { MainService } from '../../main.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit() {
   }
@@ -19,5 +22,15 @@ export class HomeComponent implements OnInit {
     { description: 'Perry Cox', status: 'Implemented' },
     { description: 'Ben Sullivan', status: 'In Progress' },
   ];
+
+  open() {
+    this.dialogService.open(InitiateRecordComponent);
+  }
+
+  play() {
+    
+  }
+
+
 
 }

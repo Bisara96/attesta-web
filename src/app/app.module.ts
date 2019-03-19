@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbCompsModule } from './ngb-comps.module';
+import { NbThemeModule, NbLayoutModule, NbActionsModule, NbSearchModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -15,7 +15,10 @@ import { NgbCompsModule } from './ngb-comps.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbCompsModule
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbActionsModule,
+    NbSearchModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
