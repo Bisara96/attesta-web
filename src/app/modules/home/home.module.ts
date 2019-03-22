@@ -11,11 +11,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgbCompsModule } from 'src/app/ngb-comps.module';
 import { InitiateRecordComponent } from './dialogs/initiate-record/initiate-record.component';
 import { MainService } from './main.service';
+import { TestStepComponent } from './dialogs/test-step/test-step.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    InitiateRecordComponent
+    InitiateRecordComponent,
+    TestStepComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,10 @@ import { MainService } from './main.service';
     HttpClientModule,
     FormsModule
   ],
-  entryComponents: [InitiateRecordComponent],
+  entryComponents: [
+    InitiateRecordComponent,
+    TestStepComponent
+  ],
   providers: [
     MainService
   ]

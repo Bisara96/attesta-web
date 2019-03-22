@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsModule, NbSearchModule, NbButtonModule, NbDialogModule, NbInputModule } from '@nebular/theme';
+import { NbListModule, NbCardModule, NbActionsModule, NbSearchModule, NbButtonModule, NbDialogModule, NbInputModule, NbAccordionModule, NbLayoutModule, NbTabsetModule } from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   declarations: [],
@@ -10,14 +11,20 @@ import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbActionsMod
     NbCardModule,
     NbButtonModule,
     NbDialogModule.forChild({hasBackdrop: true, closeOnBackdropClick: false}),
-    NbInputModule
+    NbInputModule,
+    Ng2SmartTableModule,
+    NbLayoutModule,
+    NbTabsetModule
   ],
   exports: [
     NbListModule,
     NbCardModule,
     NbButtonModule,
     NbDialogModule,
-    NbInputModule
+    NbInputModule,
+    Ng2SmartTableModule,
+    NbLayoutModule,
+    NbTabsetModule
   ]
 })
 export class NgbCompsModule { }

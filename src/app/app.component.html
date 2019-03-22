@@ -1,34 +1,35 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
-
-    <div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
-      <div class="logo-containter">
-        <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
-      <div class="logo" (click)="goToHome()">FYP</div>
+    <nb-layout-header fixed>
+  
+      <div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+        <div class="logo-containter">
+          <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
+        <div class="logo" (click)="goToHome()">FYP</div>
+        </div>
       </div>
-    </div>
-
-    <div class="header-container">
-      <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
-        <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
-        <nb-action class="control-item" icon="nb-email"></nb-action>
-        <nb-action class="control-item">
-          <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
-        </nb-action>
-      </nb-actions>
-    </div>
-
-  </nb-layout-header>
-
-  <nb-layout-column>
-
-    <router-outlet></router-outlet>
-    
-  </nb-layout-column>
-
-  <nb-layout-footer fixed>
-  <!-- Insert footer here -->
-  </nb-layout-footer>
-
-</nb-layout>
+  
+      <div class="header-container">
+        <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+          <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
+          <nb-action class="control-item" icon="nb-email"></nb-action>
+          <nb-action class="control-item">
+            <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
+          </nb-action>
+        </nb-actions>
+      </div>
+  
+    </nb-layout-header>
+  
+    <nb-layout-column>
+  
+      <router-outlet></router-outlet>
+      
+    </nb-layout-column>
+  
+    <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+    </nb-layout-footer>
+  
+  </nb-layout>
+  

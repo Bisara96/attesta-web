@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { UserStory } from './models/userstory';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,25 @@ export class MainService {
   constructor(private httpClient: HttpClient) { }
   
 
-  initiateRecording (url: string): Observable<any> {
+  initiateRecording (url: string,id: number): Observable<any> {
 
-    return this.httpClient.get<any>('http://localhost:8080/record/start?url='+url)
+    return this.httpClient.get<any>('http://localhost:8080/record/start?url='+url+'&&id='+id)
       .pipe(
         catchError(this.handleError<any>('initiateRecording', []))
+      );
+  }
+
+  executeUserStory(id: string) {
+    return this.httpClient.get<any>('http://localhost:8080/record/play?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Execute UserStory', []))
+      );
+  }
+
+  getUserStories (): Observable<UserStory[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/getall')
+      .pipe(
+        catchError(this.handleError<any>('get all userstories', []))
       );
   }
 

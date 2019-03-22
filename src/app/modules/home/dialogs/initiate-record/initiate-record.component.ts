@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from '../../main.service';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'app-initiate-record',
@@ -8,7 +9,9 @@ import { MainService } from '../../main.service';
 })
 export class InitiateRecordComponent implements OnInit {
 
-  constructor(private mainService: MainService) { }
+  @Input() id: number;
+
+  constructor(private mainService: MainService,protected dialogRef: NbDialogRef<InitiateRecordComponent>) { }
 
   url: string = '';
 
@@ -16,8 +19,13 @@ export class InitiateRecordComponent implements OnInit {
   }
 
   recordUserStory() {
-    this.mainService.initiateRecording(this.url)
+    let id = 1;
+    this.mainService.initiateRecording(this.url,this.id)
     .subscribe(result => console.log(result));
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
 }
