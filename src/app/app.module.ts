@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialStuffModule } from './app-material-stuff.module';
 import { AppNavBarComponent } from './app-nav-bar/app-nav-bar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,13 @@ import { AppNavBarComponent } from './app-nav-bar/app-nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AppMaterialStuffModule
+    AppMaterialStuffModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

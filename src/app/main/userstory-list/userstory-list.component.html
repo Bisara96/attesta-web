@@ -1,4 +1,4 @@
-<mat-accordion>
+<!-- <mat-accordion>
   <mat-expansion-panel *ngFor="let story of userStories; let i = index;trackBy: trackByIndex">
     <mat-expansion-panel-header>
       {{ story.description }}
@@ -7,6 +7,7 @@
       <button mat-raised-button (click)="openRecordDialog(story.id);"><i class="fas fa-video"></i></button>
       <button mat-raised-button (click)="executeUserStory(story.id);"><i class="fas fa-play"></i></button>
       <button mat-raised-button (click)="refreshUserStory(story.id, i);"><i class="fas fa-sync-alt"></i></button>
+      <button mat-raised-button (click)="refreshUserStory(story.id, i);">Test Cases</button>
     </div>
     <mat-tab-group>
       <mat-tab label="Test Steps">
@@ -21,4 +22,29 @@
       </mat-tab>
     </mat-tab-group>
   </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
+<!-- 
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let story of userStories; let i = index;trackBy: trackByIndex">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{story.description }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip color="accent" selected>{{ story.status }}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="main-wrap" [@cardAnimation]="userStories.length" @plusAnimation>
+  <div class="card" (click)="openGenerateTCDialog(story.id)" *ngFor="let story of userStories; let i = index;trackBy: trackByIndex">
+    <button class="cross" (click)="deleteCard(i)">&#10006;</button>
+    <h4 class="info">{{ story.description }}</h4>
+  </div>
+  <div class="card plus-card" (click)="addCard()">
+    <p class="plus">&#43;</p>
+  </div>
+</div>

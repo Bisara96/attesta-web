@@ -1,0 +1,28 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let story of userStories; let i = index;trackBy: trackByIndex">
+    <mat-expansion-panel-header>
+      {{ story.description }}
+    </mat-expansion-panel-header>
+    <div class="story-actions">
+      <button mat-raised-button (click)="openRecordDialog(story.id);"><i class="fas fa-video"></i></button>
+      <button mat-raised-button (click)="executeUserStory(story.id);"><i class="fas fa-play"></i></button>
+      <button mat-raised-button (click)="refreshUserStory(story.id, i);"><i class="fas fa-sync-alt"></i></button>
+      <button mat-raised-button (click)="refreshUserStory(story.id, i);">Test Cases</button>
+    </div>
+    <mat-tab-group>
+      <mat-tab label="Test Steps">
+        <app-userstory-test-steps
+          [stepsJson]="story.stepsJson"
+        ></app-userstory-test-steps>
+      </mat-tab>
+      <mat-tab label="Test Cases">
+        <app-userstory-test-steps
+        [stepsJson]="story.stepsJson"
+      ></app-userstory-test-steps>
+      <app-userstory-test-steps
+          [stepsJson]="story.stepsJson"
+        ></app-userstory-test-steps>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-expansion-panel>
+</mat-accordion>

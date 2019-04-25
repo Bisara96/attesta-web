@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+      <mat-toolbar color = "primary">Project</mat-toolbar>
+      <div class="sidenav-content-tc">
+          <h3 mat-subheader>Sprint 1</h3>
+          <tree-root class="story-tree" [nodes]="nodes" [options]="options"></tree-root>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <div>
+            <button mat-button>WhiteBoard</button>
+            <button mat-button>Test Cases</button>
+            <button mat-button>Reports</button>
+        </div>
+      </mat-toolbar>
+      <app-story-test-cases **ngIf="isStoryView"></app-story-test-cases>
+      <app-test-case-details *ngIf="isTestCaseView"></app-test-case-details>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

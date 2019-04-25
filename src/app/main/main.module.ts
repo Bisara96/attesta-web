@@ -10,6 +10,16 @@ import { UserstoryTestStepsComponent } from './userstory-test-steps/userstory-te
 import { UserstoryAcceptanceCriteriaComponent } from './userstory-acceptance-criteria/userstory-acceptance-criteria.component';
 import { InitiateRecordComponent } from './dialogs/initiate-record/initiate-record.component';
 import { FormsModule } from '@angular/forms';
+import { TestCasesComponent } from './test-cases/test-cases.component';
+import { TreeModule } from 'angular-tree-component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { SideNavContentComponent } from './side-nav-content/side-nav-content.component';
+import { SideNavTestcasesComponent } from './side-nav-testcases/side-nav-testcases.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { TestcasesHomeComponent } from './testcases-home/testcases-home.component';
+import { StoryTestCasesComponent } from './story-test-cases/story-test-cases.component';
+import { TestCaseDetailsComponent } from './test-case-details/test-case-details.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +27,31 @@ import { FormsModule } from '@angular/forms';
     UserstoryListComponent,
     UserstoryTestStepsComponent,
     UserstoryAcceptanceCriteriaComponent,
-    InitiateRecordComponent
+    InitiateRecordComponent,
+    TestCasesComponent,
+    SideNavComponent,
+    SideNavContentComponent,
+    SideNavTestcasesComponent,
+    TestcasesHomeComponent,
+    StoryTestCasesComponent,
+    TestCaseDetailsComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     MainMaterialStuffModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TreeModule.forRoot(),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   entryComponents: [
-    InitiateRecordComponent,
+    InitiateRecordComponent
   ],
   providers: [
     MainService
