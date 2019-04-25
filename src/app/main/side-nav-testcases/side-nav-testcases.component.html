@@ -25,7 +25,7 @@
             <button mat-button>Reports</button>
         </div>
       </mat-toolbar>
-      <app-story-test-cases **ngIf="isStoryView"></app-story-test-cases>
+      <app-story-test-cases *ngIf="isStoryView"></app-story-test-cases>
       <app-test-case-details *ngIf="isTestCaseView"></app-test-case-details>
     </mat-sidenav-content>
   </mat-sidenav-container>
