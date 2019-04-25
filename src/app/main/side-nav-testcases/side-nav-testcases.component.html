@@ -3,9 +3,10 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
-      <mat-toolbar color = "primary">Project</mat-toolbar>
+      <mat-toolbar color = "primary">
+          <span>Project Login - Sprint 1</span> 
+      </mat-toolbar>
       <div class="sidenav-content-tc">
-          <h3 mat-subheader>Sprint 1</h3>
           <tree-root class="story-tree" [nodes]="nodes" [options]="options"></tree-root>
       </div>
     </mat-sidenav>
@@ -20,9 +21,10 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         <div>
-            <button mat-button>WhiteBoard</button>
-            <button mat-button>Test Cases</button>
-            <button mat-button>Reports</button>
+            <button mat-button routerLink="/" routerLinkActive="active">WhiteBoard</button>
+            <button mat-button routerLink="/testcases" routerLinkActive="active">Test Cases</button>
+            <button mat-button routerLink="/executor" routerLinkActive="active">Executor</button>
+            <button mat-button routerLink="/reports" routerLinkActive="active">Reports</button>
         </div>
       </mat-toolbar>
       <app-story-test-cases *ngIf="isStoryView"></app-story-test-cases>

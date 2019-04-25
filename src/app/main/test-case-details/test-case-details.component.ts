@@ -12,24 +12,24 @@ export class TestCaseDetailsComponent implements OnInit {
 
   settings = {
     columns: {
-      ID: {
-        title: 'Test Case ID',
+      step: {
+        title: 'Step',
         filter: false,
         type: 'html',
         valuePrepareFunction: function(value){
           return '<div class="customformat"> ' + value + ' </div>' 
         }
       },
-      scenario: {
-        title: 'Test Case Scenario',
+      testStep: {
+        title: 'Test Step',
         filter: false,
         type: 'html',
         valuePrepareFunction: function(value){
           return '<div class="customformat"> ' + value + ' </div>' 
         }
       },
-      testCase: {
-        title: 'Test Case',
+      testData: {
+        title: 'Test Data',
         filter: false,
         type: 'html',
         valuePrepareFunction: function(value){
@@ -59,14 +59,6 @@ export class TestCaseDetailsComponent implements OnInit {
         valuePrepareFunction: function(value){
           return '<div class="customformat"> ' + value + ' </div>' 
         }
-      },
-      actions: {
-        title: 'Actions',
-        filter: false,
-        type: 'html',
-        valuePrepareFunction: function(value){
-          return '<button mat-raised-button><i class="fas fa-play"></i></button>' 
-        }
       }
     },
     actions: {
@@ -77,41 +69,29 @@ export class TestCaseDetailsComponent implements OnInit {
   };
 
   data = [
+    // {
+    //   step:'1',
+    //   testStep:'Enter Username',
+    //   testData:'user1234',
+    //   expectedResult:'PASS',
+    //   actualResult:'PASS',
+    //   status:'PASS'
+    // },
     {
-      ID:'TC_01',
-      scenario:'Username should be entered',
-      testCase:'Username is entered',
+      step:'1',
+      testStep:'Enter Password',
+      testData:'1234@abcd',
       expectedResult:'PASS',
       actualResult:'PASS',
-      status:'PASS',
-      actions:''
+      status:'PASS'
     },
     {
-      ID:'TC_02',
-      scenario:'Username should be entered',
-      testCase:'Username is not entered',
-      expectedResult:'PASS',
-      actualResult:'PASS',
-      status:'PASS',
-      actions:''
-    },
-    {
-      ID:'TC_03',
-      scenario:'Password should be entered',
-      testCase:'Password is entered',
+      step:'2',
+      testStep:'Click Login',
+      testData:'',
       expectedResult:'FAIL',
       actualResult:'FAIL',
-      status:'PASS',
-      actions:''
-    },
-    {
-      ID:'TC_04',
-      scenario:'Password should be entered',
-      testCase:'Password is not entered',
-      expectedResult:'FAIL',
-      actualResult:'FAIL',
-      status:'PASS',
-      actions:''
+      status:'PASS'
     }
     
   ];
@@ -124,3 +104,42 @@ export class TestCaseDetailsComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+
+
+// {
+//   step:'1',
+//   testStep:'Enter Username',
+//   testData:'user1234',
+//   expectedResult:'PASS',
+//   actualResult:'PASS',
+//   status:'PASS'
+// },
+// {
+//   step:'2',
+//   testStep:'Enter Password',
+//   testData:'1234@abcd',
+//   expectedResult:'PASS',
+//   actualResult:'PASS',
+//   status:'PASS'
+// },
+// {
+//   step:'3',
+//   testStep:'Click Login',
+//   testData:'',
+//   expectedResult:'FAIL',
+//   actualResult:'FAIL',
+//   status:'PASS'
+// },
+// {
+//   step:'4',
+//   testStep:'Password should be entered',
+//   testData:'Password is not entered',
+//   expectedResult:'FAIL',
+//   actualResult:'FAIL',
+//   status:'PASS'
+// }

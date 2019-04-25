@@ -21,10 +21,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>FYP</span>
-      <span>FYP</span>
-      <span>FYP</span>
-      <span>FYP</span>
+      <div>
+          <button mat-button routerLink="/" routerLinkActive="active">WhiteBoard</button>
+          <button mat-button routerLink="/testcases" routerLinkActive="active">Test Cases</button>
+          <button mat-button routerLink="/executor" routerLinkActive="active">Executor</button>
+          <button mat-button routerLink="/reports" routerLinkActive="active">Reports</button>
+      </div>
     </mat-toolbar>
     <app-userstory-list></app-userstory-list>
   </mat-sidenav-content>
