@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>User Story</h2>
+
+<mat-dialog-content>
+  <div class="ustory-data">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Description" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option value="new" selected>New</mat-option>
+        <mat-option value="implemented">Implemented</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-list role="list">
+    <h3 mat-subheader>Acceptance Criteria</h3>
+    <mat-list-item role="listitem">Item 1</mat-list-item>
+    <mat-list-item role="listitem">Item 2</mat-list-item>
+    <mat-list-item role="listitem">Item 3</mat-list-item>
+  </mat-list>
+
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button" (click)="add()">Add</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

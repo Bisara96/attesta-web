@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, MatChipsModule, MatToolbarModule, MatButtonModule, MatDialogModule, MatInputModule, MatCardModule, MatGridListModule, MatMenuModule, MatStepperModule, MatIconModule, MatSidenavModule, MatBadgeModule } from '@angular/material';
+import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, MatChipsModule, MatToolbarModule, MatButtonModule, MatDialogModule, MatInputModule, MatCardModule, MatGridListModule, MatMenuModule, MatStepperModule, MatIconModule, MatSidenavModule, MatBadgeModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,7 +20,8 @@ import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, M
     MatStepperModule,
     MatIconModule,
     MatSidenavModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule
   ],
   exports: [
     MatExpansionModule,
@@ -39,7 +40,8 @@ import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, M
     MatStepperModule,
     MatIconModule,
     MatSidenavModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule
   ]
 })
 export class MainMaterialStuffModule { }

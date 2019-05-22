@@ -20,6 +20,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { TestcasesHomeComponent } from './testcases-home/testcases-home.component';
 import { StoryTestCasesComponent } from './story-test-cases/story-test-cases.component';
 import { TestCaseDetailsComponent } from './test-case-details/test-case-details.component';
+import { AddUserStoryComponent } from './add-user-story/add-user-story.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TestCaseDetailsComponent } from './test-case-details/test-case-details.
     SideNavTestcasesComponent,
     TestcasesHomeComponent,
     StoryTestCasesComponent,
-    TestCaseDetailsComponent
+    TestCaseDetailsComponent,
+    AddUserStoryComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,8 @@ import { TestCaseDetailsComponent } from './test-case-details/test-case-details.
     MatListModule
   ],
   entryComponents: [
-    InitiateRecordComponent
+    InitiateRecordComponent,
+    AddUserStoryComponent
   ],
   providers: [
     MainService

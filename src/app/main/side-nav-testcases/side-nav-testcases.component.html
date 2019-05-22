@@ -4,8 +4,30 @@
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
       <mat-toolbar color = "primary">
-          <span>Project Login - Sprint 1</span> 
+          <span>Project Login - Sprint 1</span>
+          <button mat-button [matMenuTriggerFor]="projects"><i class="fas fa-edit"></i></button>
       </mat-toolbar>
+
+      <mat-menu #projects="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="project1">Project 1</button>
+          <button mat-menu-item [matMenuTriggerFor]="project2">Project 2</button>
+        </mat-menu>
+        
+        <mat-menu #project1="matMenu">
+          <button mat-menu-item>Spring 1</button>
+          <button mat-menu-item>Spring 2</button>
+          <button mat-menu-item>Spring 3</button>
+          <button mat-menu-item>Spring 4</button>
+        </mat-menu>
+        
+        <mat-menu #project2="matMenu">
+          <button mat-menu-item>Spring 1</button>
+          <button mat-menu-item>Spring 2</button>
+          <button mat-menu-item>Spring 3</button>
+          <button mat-menu-item>Spring 4</button>
+        </mat-menu>
+        
+       
       <div class="sidenav-content-tc">
           <tree-root class="story-tree" [nodes]="nodes" [options]="options"></tree-root>
       </div>

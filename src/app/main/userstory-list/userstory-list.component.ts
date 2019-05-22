@@ -1,3 +1,4 @@
+import { AddUserStoryComponent } from "./../add-user-story/add-user-story.component";
 import { MainService } from "./../services/main.service";
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { UserStory } from "../entities/UserStory";
@@ -69,7 +70,13 @@ export class UserstoryListComponent implements OnInit {
   }
 
   addCard() {
-    this.userStories.push(this.userStories[0]);
+    this.dialog
+      .open(AddUserStoryComponent, {
+        width: "500px",
+        panelClass: "add-story-dialog"
+      })
+      .afterClosed()
+      .subscribe(result => {});
   }
 
   deleteCard(i) {
@@ -104,17 +111,18 @@ export class UserstoryListComponent implements OnInit {
                 showConfirmButton: false
               });
               Swal.clickConfirm();
-              this.mainService.initiateRecording(result, id)
-              .subscribe(result => {
-                Swal.insertQueueStep({
-                  type: 'success',
-                  title: 'Test Cases Generated',
-                  text: 'Test Cases are generated and ready to be executed!',
-                  showCancelButton: false,
-                  showConfirmButton: false
-                })
-                Swal.clickConfirm();
-              });
+              this.mainService
+                .initiateRecording(result, id)
+                .subscribe(result => {
+                  Swal.insertQueueStep({
+                    type: "success",
+                    title: "Test Cases Generated",
+                    text: "Test Cases are generated and ready to be executed!",
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  });
+                  Swal.clickConfirm();
+                });
             });
             // Swal.clickConfirm();
           }
