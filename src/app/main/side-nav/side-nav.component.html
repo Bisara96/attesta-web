@@ -3,7 +3,30 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar color = "primary">Project</mat-toolbar>
+      <mat-toolbar color = "primary">
+        <span>TestProject</span>
+        <button mat-button [matMenuTriggerFor]="projects"><i class="fas fa-edit"></i></button>
+    </mat-toolbar>
+
+    <mat-menu #projects="matMenu" style="min-width: 120px">
+        <button mat-menu-item [matMenuTriggerFor]="project1">Project 1</button>
+        <button mat-menu-item [matMenuTriggerFor]="project2">Project 2</button>
+        <button mat-menu-item><span>New Project</span><span style="visibility: hidden">.......</span><i class="fas fa-plus-square"></i></button>
+      </mat-menu>
+      
+      <mat-menu #project1="matMenu">
+        <button mat-menu-item>Spring 1</button>
+        <button mat-menu-item>Spring 2</button>
+        <button mat-menu-item>Spring 3</button>
+        <button mat-menu-item>Spring 4</button>
+      </mat-menu>
+      
+      <mat-menu #project2="matMenu">
+        <button mat-menu-item>Spring 1</button>
+        <button mat-menu-item>Spring 2</button>
+        <button mat-menu-item>Spring 3</button>
+        <button mat-menu-item>Spring 4</button>
+      </mat-menu>
     <mat-nav-list>
       <h3 mat-subheader>Sprints</h3>
       <a mat-list-item href="#">Sprint 1</a>

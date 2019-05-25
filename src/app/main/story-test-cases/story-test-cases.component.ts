@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { MainService } from '../services/main.service';
 
 @Component({
   selector: 'app-story-test-cases',
@@ -7,6 +8,8 @@ import { LocalDataSource } from 'ng2-smart-table';
   styleUrls: ['./story-test-cases.component.scss']
 })
 export class StoryTestCasesComponent{
+
+  @Input() storyID;
 
   source: LocalDataSource;
 
@@ -116,7 +119,7 @@ export class StoryTestCasesComponent{
     
   ];
 
-  constructor() { 
+  constructor(private mainService: MainService) { 
     this.source = new LocalDataSource(this.data);
   }
 

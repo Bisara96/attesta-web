@@ -29,7 +29,7 @@
         
        
       <div class="sidenav-content-tc">
-          <tree-root class="story-tree" [nodes]="nodes" [options]="options"></tree-root>
+          <tree-root #tree class="story-tree" [nodes]="nodes" [options]="options"></tree-root>
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -49,8 +49,8 @@
             <button mat-button routerLink="/reports" routerLinkActive="active">Reports</button>
         </div>
       </mat-toolbar>
-      <app-story-test-cases *ngIf="isStoryView"></app-story-test-cases>
-      <app-test-case-details *ngIf="isTestCaseView"></app-test-case-details>
+      <app-story-test-cases *ngIf="isStoryView" [storyID]="storyID"></app-story-test-cases>
+      <app-test-case-details *ngIf="isTestCaseView" [testCaseID]="testCaseID"></app-test-case-details>
     </mat-sidenav-content>
   </mat-sidenav-container>
   

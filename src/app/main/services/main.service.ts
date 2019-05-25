@@ -41,6 +41,48 @@ export class MainService {
       );
   }
 
+  getTestCases (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/get_story?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get story testcases', []))
+      );
+  }
+
+  getTestCase (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/get?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get testcase details', []))
+      );
+  }
+
+  getTestCaseSteps (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/get_tc_steps?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get testcase steps', []))
+      );
+  }
+
+  executeTestCase (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/execute/execute_tc?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Execute test case', []))
+      );
+  }
+
+  generateTestCases (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/generate?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Generate Test Cases', []))
+      );
+  }
+
+  checkRecordStatus (id): Observable<Boolean> {
+    return this.httpClient.get<any>('http://localhost:8080/record/status?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Check record status', []))
+      );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
    

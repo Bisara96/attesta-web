@@ -21,6 +21,9 @@ import { TestcasesHomeComponent } from './testcases-home/testcases-home.componen
 import { StoryTestCasesComponent } from './story-test-cases/story-test-cases.component';
 import { TestCaseDetailsComponent } from './test-case-details/test-case-details.component';
 import { AddUserStoryComponent } from './add-user-story/add-user-story.component';
+import { ExecutorHomeComponent } from './executor-home/executor-home.component';
+import { SideNavExecutorComponent } from './side-nav-executor/side-nav-executor.component';
+import { ExecutorViewContentComponent } from './executor-view-content/executor-view-content.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { AddUserStoryComponent } from './add-user-story/add-user-story.component
     TestcasesHomeComponent,
     StoryTestCasesComponent,
     TestCaseDetailsComponent,
-    AddUserStoryComponent
+    AddUserStoryComponent,
+    ExecutorHomeComponent,
+    SideNavExecutorComponent,
+    ExecutorViewContentComponent
   ],
   imports: [
     CommonModule,

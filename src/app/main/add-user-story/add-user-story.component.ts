@@ -9,6 +9,8 @@ import { MatDialogRef } from '@angular/material';
 export class AddUserStoryComponent implements OnInit {
 
   selected = "new";
+  acList = [];
+  newAC = "";
 
   constructor(public dialogRef: MatDialogRef<AddUserStoryComponent>) { }
 
@@ -17,6 +19,11 @@ export class AddUserStoryComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  addAC(ac) {
+    this.acList.push(ac);
+    this.newAC = "";
   }
 
 }

@@ -1,0 +1,35 @@
+.sidenav-container {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    width: 300px;
+}
+
+.sidenav .mat-toolbar {
+    background: # 3f51b5;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.sidenav-content-tc {
+  padding: 10px;
+}
+
+.sprints_list {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.sprint-play-btn {
+    color: green;
+}

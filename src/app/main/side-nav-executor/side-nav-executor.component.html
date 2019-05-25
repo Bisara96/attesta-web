@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar color="primary">
+      <span>Project Login</span>
+      <button mat-button [matMenuTriggerFor]="projects">
+        <i class="fas fa-edit"></i>
+      </button>
+    </mat-toolbar>
+
+    <mat-menu #projects="matMenu">
+      <button mat-menu-item>Project 1</button>
+      <button mat-menu-item>Project 2</button>
+    </mat-menu>
+
+    <div class="sidenav-content-tc">
+      <mat-list role="list">
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 1</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 2</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 3</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 4</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 5</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 6</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 7</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+        <mat-list-item role="listitem"> <div class="sprints_list"> <button mat-button>Sprint 8</button> <button mat-button><i class="fas fa-play sprint-play-btn"></i></button></div> </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div>
+        <button mat-button routerLink="/" routerLinkActive="active">
+          WhiteBoard
+        </button>
+        <button mat-button routerLink="/testcases" routerLinkActive="active">
+          Test Cases
+        </button>
+        <button mat-button routerLink="/executor" routerLinkActive="active">
+          Executor
+        </button>
+        <button mat-button routerLink="/reports" routerLinkActive="active">
+          Reports
+        </button>
+      </div>
+    </mat-toolbar>
+    <app-executor-view-content></app-executor-view-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

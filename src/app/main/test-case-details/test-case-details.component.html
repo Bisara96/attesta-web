@@ -5,28 +5,34 @@
   <table class="story-test-cases-details">
     <tr>
       <td class="story-test-cases-details-title">Test Case ID</td>
-      <td>TC_01</td>
+      <td>{{ testCase.no ? (testCase.no).toUpperCase() : '' }}</td>
     </tr>
     <tr>
       <td class="story-test-cases-details-title">Test Case Title</td>
-      <td>Username is entered</td>
+      <td>{{ testCase.title ? testCase.title : '' }}</td>
     </tr>
     <tr>
       <td class="story-test-cases-details-title">Scenario</td>
       <td>
-          Username should be entered.
+        {{ testCase.acceptanceCriteria ? testCase.acceptanceCriteria.acceptanceCriteria : '' }}
       </td>
     </tr>
     <tr>
       <td class="story-test-cases-details-title">Date Generated</td>
       <td>
-        13/04/2019
+        {{ testCase.dateGenerated ? testCase.dateGenerated : '' }}
       </td>
     </tr>
     <tr>
       <td class="story-test-cases-details-title">Last Executed Date</td>
       <td>
-        13/04/2019
+        {{ testCase.lastExecutedDate ? testCase.lastExecutedDate : '' }}
+      </td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Expected Result</td>
+      <td>
+        {{ testCase.expectedResult ? testCase.expectedResult : '' }}
       </td>
     </tr>
   </table>
@@ -34,7 +40,7 @@
 <br />
 <!-- <button mat-raised-button><i class="fas fa-play"></i></button> -->
 <br />
-<div>
+<div style="width: 75%">
   <ng2-smart-table
     class="testcases-table"
     [settings]="settings"

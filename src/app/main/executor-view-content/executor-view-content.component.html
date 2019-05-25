@@ -1,0 +1,28 @@
+<div class="card-container">
+  <mat-card class="us-card" [style.minHeight]="'100%'" [style.minWidth]="'45%'">
+    <mat-card-header>
+      <mat-card-title>User Stories</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-selection-list #storyList>
+        <mat-list-option *ngFor="let story of stories;let i = index" (click)="getStoryTestCases(i,story.id);loadTestCasesData(i)">
+          {{story.description}}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="tc-card" [style.minHeight]="'100%'" [style.minWidth]="'45%'">
+    <mat-card-header>
+      <mat-card-title>Test Cases</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng2-smart-table
+      class="testcases-table"
+      [settings]="settings"
+      (custom)="executeTestCase($event)"
+      [source]="source"
+      #table></ng2-smart-table>
+    </mat-card-content>
+  </mat-card>
+</div>

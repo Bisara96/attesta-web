@@ -19,9 +19,17 @@
 
   <mat-list role="list">
     <h3 mat-subheader>Acceptance Criteria</h3>
-    <mat-list-item role="listitem">Item 1</mat-list-item>
-    <mat-list-item role="listitem">Item 2</mat-list-item>
-    <mat-list-item role="listitem">Item 3</mat-list-item>
+    <mat-list-item role="listitem">
+      <div class="add-new-ac">
+        <mat-form-field class="example-full-width">
+          <input matInput [(ngModel)]="newAC"/>
+        </mat-form-field>
+        <button mat-button (click)="addAC(newAC)"><i class="fas fa-plus"></i></button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let ac of acList">{{ ac }}</mat-list-item>
   </mat-list>
 
   <mat-dialog-actions>

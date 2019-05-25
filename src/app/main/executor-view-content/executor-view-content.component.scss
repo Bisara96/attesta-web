@@ -1,0 +1,76 @@
+.card-container {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    justify-content: space-evenly;
+}
+
+$table-border-color: #e9ebec;
+
+:host {
+    /deep/ {
+
+        .testcases-table {
+
+            //   color: #e9ebec;
+            tr {
+
+                td,
+                th {
+                    border: 2px solid #e9ebec;
+                }
+            }
+        }
+    }
+}
+
+:host {
+    /deep/ {
+
+        .testcases-table {
+
+            //   color: #e9ebec;
+            tr {
+                td:last-child {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.story-test-cases-details{
+    min-width: 50%;
+}
+
+.story-test-cases-details, .story-test-cases-details td {
+    border: 2px solid #e9ebec;
+    border-collapse: collapse;
+  }
+
+.story-test-cases-details-title {
+    background-color: #1e6bb8;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.story-test-cases-details td {
+    padding: 10px;
+}
+
+:host /deep/ ng2-st-tbody-edit-delete {display: flex !important;
+    height: 0 !important;
+  }
+  
+  :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    font-size: 1.1em;
+  }
+  
+  :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+    color: #5dcfe3;
+  }

@@ -18,6 +18,7 @@ export class UserstoryListComponent implements OnInit {
   userStories: UserStory[] = [];
 
   trackByIndex = index => index;
+  finishedRecording = false;
 
   constructor(private mainService: MainService, private dialog: MatDialog) {}
 
@@ -91,7 +92,7 @@ export class UserstoryListComponent implements OnInit {
         {
           title: "Locate",
           text: "Tell us where the implementation is done",
-          input: "url",
+          input: "text",
           confirmButtonText: "Next &rarr;",
           showCancelButton: true,
           preConfirm: result => {
@@ -108,37 +109,33 @@ export class UserstoryListComponent implements OnInit {
                 title: "Generating Test Cases",
                 text: "Standy by, generating test cases...",
                 showCancelButton: false,
-                showConfirmButton: false
+                showConfirmButton: false,
               });
+
+              setTimeout(() => { 
+                Swal.clickConfirm();
+                Swal.insertQueueStep({
+                type: "success",
+                title: "Test Cases Generated",
+                text: "Test Cases are generated and ready to be executed!",
+                showCancelButton: false,
+                showConfirmButton: true
+              }); }, 15000);
               Swal.clickConfirm();
-              this.mainService
-                .initiateRecording(result, id)
-                .subscribe(result => {
-                  Swal.insertQueueStep({
-                    type: "success",
-                    title: "Test Cases Generated",
-                    text: "Test Cases are generated and ready to be executed!",
-                    showCancelButton: false,
-                    showConfirmButton: false
-                  });
-                  Swal.clickConfirm();
-                });
+              
+              // Swal.clickConfirm();
             });
             // Swal.clickConfirm();
           }
         }
-      ])
-      .then(result => {
-        if (result.value) {
-          Swal.fire({
-            title: "All done!",
-            html:
-              "Your answers: <pre><code>" +
-              JSON.stringify(result.value) +
-              "</code></pre>",
-            confirmButtonText: "Lovely!"
-          });
-        }
-      });
+      ]);
+  }
+
+  checkStatus(id) {
+    this.mainService.checkRecordStatus(id).subscribe(result => {
+      if (!result) {
+        this.finishedRecording = true;
+      }
+    });
   }
 }
