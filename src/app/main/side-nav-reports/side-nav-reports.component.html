@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)"
   >
-  <mat-toolbar color="primary">
+    <mat-toolbar color="primary">
       <span>{{ selectedProject.projectName }}</span>
       <button mat-button [matMenuTriggerFor]="projects">
         <i class="fas fa-edit"></i>
@@ -15,26 +15,21 @@
     </mat-toolbar>
 
     <mat-menu #projects="matMenu" style="min-width: 120px">
-        <ng-container *ngFor="let project of projectList">
-          <button mat-menu-item (click)="getProjectSprints(project.id)">
-            {{ project.projectName }}
-          </button>
-        </ng-container>
-      </mat-menu>
+      <ng-container *ngFor="let project of projectList">
+        <button mat-menu-item (click)="getProjectSprints(project.id)">
+          {{ project.projectName }}
+        </button>
+      </ng-container>
+      <button mat-menu-item>
+        <span>New Project</span><span style="visibility: hidden">.......</span
+        ><i class="fas fa-plus-square"></i>
+      </button>
+    </mat-menu>
 
     <div class="sidenav-content-tc">
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let sprint of sprints">
-          <div class="sprints_list">
-            <button mat-button (click)="selectSprint(sprint)">{{ sprint.sprintName }}</button>
-            <button mat-button>
-              <i class="fas fa-play sprint-play-btn"></i>
-            </button>
-          </div>
-        </mat-list-item>
-      </mat-list>
-
+        <tree-root #tree class="story-tree" [nodes]="data" [options]="options"></tree-root>
     </div>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -62,6 +57,6 @@
         </button>
       </div>
     </mat-toolbar>
-    <app-executor-view-content *ngIf="showExecutionView" [sprintID]="selectedSprintID"></app-executor-view-content>
+   <app-test-case-reports-view *ngIf="active === 'testcase'" [testCaseID]="selectedTestCaseID"></app-test-case-reports-view>
   </mat-sidenav-content>
 </mat-sidenav-container>

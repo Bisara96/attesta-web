@@ -6,6 +6,7 @@ import { UserstoryListComponent } from './userstory-list/userstory-list.componen
 import { MainService } from './services/main.service';
 import { MainMaterialStuffModule } from './main-material-stuff.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ImageViewerModule } from '@hallysonh/ngx-imageviewer';
 import { UserstoryTestStepsComponent } from './userstory-test-steps/userstory-test-steps.component';
 import { UserstoryAcceptanceCriteriaComponent } from './userstory-acceptance-criteria/userstory-acceptance-criteria.component';
 import { InitiateRecordComponent } from './dialogs/initiate-record/initiate-record.component';
@@ -24,6 +25,11 @@ import { AddUserStoryComponent } from './add-user-story/add-user-story.component
 import { ExecutorHomeComponent } from './executor-home/executor-home.component';
 import { SideNavExecutorComponent } from './side-nav-executor/side-nav-executor.component';
 import { ExecutorViewContentComponent } from './executor-view-content/executor-view-content.component';
+import { ReportsHomeComponent } from './reports-home/reports-home.component';
+import { SideNavReportsComponent } from './side-nav-reports/side-nav-reports.component';
+import { TestCaseReportsViewComponent } from './test-case-reports-view/test-case-reports-view.component';
+import { ViewScreenshotComponent } from './view-screenshot/view-screenshot.component';
+import { TestStepResultSsViewComponent } from './test-step-result-ss-view/test-step-result-ss-view.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,12 @@ import { ExecutorViewContentComponent } from './executor-view-content/executor-v
     AddUserStoryComponent,
     ExecutorHomeComponent,
     SideNavExecutorComponent,
-    ExecutorViewContentComponent
+    ExecutorViewContentComponent,
+    ReportsHomeComponent,
+    SideNavReportsComponent,
+    TestCaseReportsViewComponent,
+    ViewScreenshotComponent,
+    TestStepResultSsViewComponent
   ],
   imports: [
     CommonModule,
@@ -56,11 +67,14 @@ import { ExecutorViewContentComponent } from './executor-view-content/executor-v
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    ImageViewerModule
   ],
   entryComponents: [
     InitiateRecordComponent,
-    AddUserStoryComponent
+    AddUserStoryComponent,
+    TestStepResultSsViewComponent,
+    ViewScreenshotComponent
   ],
   providers: [
     MainService

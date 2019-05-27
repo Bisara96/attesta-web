@@ -1,14 +1,14 @@
 <h2 mat-dialog-title>User Story</h2>
 
-<mat-dialog-content>
+<mat-dialog-content class="content">
   <div class="ustory-data">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Description" />
+      <input matInput [(ngModel)]="description" placeholder="Description" required/>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Status</mat-label>
-      <mat-select [(value)]="selected">
+      <mat-select [(value)]="selected" required>
         <mat-option value="new" selected>New</mat-option>
         <mat-option value="implemented">Implemented</mat-option>
       </mat-select>
@@ -21,7 +21,7 @@
     <h3 mat-subheader>Acceptance Criteria</h3>
     <mat-list-item role="listitem">
       <div class="add-new-ac">
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" (keyup.enter)="addAC(newAC)">
           <input matInput [(ngModel)]="newAC"/>
         </mat-form-field>
         <button mat-button (click)="addAC(newAC)"><i class="fas fa-plus"></i></button>
@@ -29,11 +29,11 @@
     </mat-list-item>
   </mat-list>
   <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let ac of acList">{{ ac }}</mat-list-item>
+    <mat-list-item role="listitem" *ngFor="let ac of acList;let i = index;" class="ac-list"><div class="ac-item">{{ ac }}</div><button mat-button (click)="dropAC(i)"><i class="fas fa-minus"></i></button></mat-list-item>
   </mat-list>
 
   <mat-dialog-actions>
     <button class="mat-raised-button" (click)="close()">Close</button>
-    <button class="mat-raised-button" (click)="add()">Add</button>
+    <button class="mat-raised-button" (click)="save()">Add</button>
   </mat-dialog-actions>
 </mat-dialog-content>

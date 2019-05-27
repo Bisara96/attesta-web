@@ -1,16 +1,16 @@
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { MainService } from './../services/main.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-executor-view-content',
   templateUrl: './executor-view-content.component.html',
   styleUrls: ['./executor-view-content.component.scss']
 })
-export class ExecutorViewContentComponent implements OnInit {
+export class ExecutorViewContentComponent implements OnChanges, OnInit {
 
-  // @ViewChild('table')
-  // smartTable: ;
+  @Input() sprintID;
 
   stories = [];
 
@@ -43,7 +43,7 @@ export class ExecutorViewContentComponent implements OnInit {
         }
       },
       actualResult: {
-        title: 'Actual Result',
+        title: 'Last Execution Result',
         filter: false,
         type: 'html',
         valuePrepareFunction: function(value){
@@ -62,14 +62,6 @@ export class ExecutorViewContentComponent implements OnInit {
             value = 'PENDING'
           }
           return '<div class="customformat"> ' + value + ' </div>' 
-        }
-      },
-      actions: {
-        title: 'Actions',
-        filter: false,
-        type: 'html',
-        valuePrepareFunction: function(value){
-          return '<button mat-raised-button><i class="fas fa-play" (click)="executeTestCase()"></i></button>' 
         }
       }
     },
@@ -94,12 +86,17 @@ export class ExecutorViewContentComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.loadUserStories();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.source = new LocalDataSource([]);
     this.loadUserStories();
   }
 
   loadUserStories() {
     this.mainService
-      .getUserStories()
+      .getUserStories(this.sprintID)
       .subscribe(result => this.stories = result);
   }
 
@@ -109,8 +106,26 @@ export class ExecutorViewContentComponent implements OnInit {
       return;
     }
     this.mainService.getTestCases(story_id).subscribe(result => {
-      this.stories[index].testCases = result;
-      this.loadTestCasesData(index);
+      // this.stories[index].testCases = result;
+      // this.loadTestCasesData(index);
+      this.getTestCaseResults(result,index);
+    });
+  }
+
+  getTestCaseResults(testCases,index) {
+    this.stories[index]['testCases'] = [];
+    testCases.forEach(testCase => {
+      this.mainService.getLastResult(testCase.id).subscribe(result => {
+        if(result.length > 0) {
+          testCase['actualResult'] = result[0]['result'];
+          testCase['status'] = testCase['actualResult'] == testCase['expectedResult'] ? 'PASS' : 'FAIL';
+          this.stories[index]['testCases'].push(testCase);
+          this.loadTestCasesData(index);
+        } else {
+          this.stories[index]['testCases'].push(testCase);
+          this.loadTestCasesData(index);
+        }
+      });
     });
   }
 

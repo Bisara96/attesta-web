@@ -1,0 +1,71 @@
+// $table-font-color: #606c71;
+
+$table-border-color: #e9ebec;
+
+:host {
+    /deep/ {
+
+        .testcases-table {
+
+            //   color: #e9ebec;
+            tr {
+
+                td,
+                th {
+                    border: 2px solid #e9ebec;
+                }
+            }
+        }
+    }
+}
+
+:host {
+    /deep/ {
+
+        .testcases-table {
+
+            //   color: #e9ebec;
+            tr {
+                td:last-child {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.story-test-cases-details {
+    min-width: 50%;
+}
+
+.story-test-cases-details,
+.story-test-cases-details td {
+    border: 2px solid #e9ebec;
+    border-collapse: collapse;
+}
+
+.story-test-cases-details-title {
+    background-color: #1e6bb8;
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.story-test-cases-details td {
+    padding: 10px;
+}
+
+.execution-inst-ls-div {
+    padding: 10px;
+}
+
+.pass {
+    color: green;
+}
+
+.fail {
+    color: red;
+}
+
+// :host /deep/ .customformat{ text-align: center; } 

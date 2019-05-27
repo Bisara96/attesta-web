@@ -1,6 +1,6 @@
 import { AddUserStoryComponent } from "./../add-user-story/add-user-story.component";
 import { MainService } from "./../services/main.service";
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges } from "@angular/core";
 import { UserStory } from "../entities/UserStory";
 import { LocalDataSource } from "ng2-smart-table";
 import { MatDialog } from "@angular/material";
@@ -14,8 +14,9 @@ import Swal from "sweetalert2";
   styleUrls: ["./userstory-list.component.scss"],
   animations: [cardAnimation, plusAnimation]
 })
-export class UserstoryListComponent implements OnInit {
+export class UserstoryListComponent implements OnChanges, OnInit {
   userStories: UserStory[] = [];
+  @Input() sprintID;
 
   trackByIndex = index => index;
   finishedRecording = false;
@@ -23,17 +24,27 @@ export class UserstoryListComponent implements OnInit {
   constructor(private mainService: MainService, private dialog: MatDialog) {}
 
   ngOnInit() {
+    // this.loadUserStories();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.loadUserStories();
   }
 
   loadUserStories() {
     this.mainService
-      .getUserStories()
+      .getUserStories(this.sprintID)
       .subscribe(result => this.setUSListData(result));
   }
 
   setUSListData(stories: UserStory[]) {
+    this.userStories = [];
     this.userStories = stories;
+    // this.userStories = this.userStories.concat(stories);
+    // this.userStories = this.userStories.concat(stories);
+    // this.userStories = this.userStories.concat(stories);
+    // this.userStories = this.userStories.concat(stories);
+    // this.userStories = this.userStories.concat(stories);
   }
 
   executeUserStory(id: string) {
@@ -70,17 +81,25 @@ export class UserstoryListComponent implements OnInit {
     this.userStories[index] = userStory;
   }
 
-  addCard() {
+  addStory() {
     this.dialog
       .open(AddUserStoryComponent, {
         width: "500px",
-        panelClass: "add-story-dialog"
+        height: "1000px",
+        panelClass: "add-story-dialog",
+        data: {
+          sprint: this.sprintID
+        }
       })
       .afterClosed()
-      .subscribe(result => {});
+      .subscribe(result => {
+        if(result.id) {
+          this.userStories.push(result);
+        }
+      });
   }
 
-  deleteCard(i) {
+  deleteStory(i) {
     this.userStories.splice(i, 1);
   }
 

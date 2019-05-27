@@ -1,9 +1,9 @@
 <div class="main-wrap" [@cardAnimation]="userStories.length" @plusAnimation>
   <div class="card" (click)="openGenerateTCDialog(story.id)" *ngFor="let story of userStories; let i = index;trackBy: trackByIndex">
-    <button class="cross" (click)="deleteCard(i)">&#10006;</button>
+    <button class="cross" (click)="deleteStory(i)">&#10006;</button>
     <h4 class="info">{{ story.description }}</h4>
   </div>
-  <div class="card plus-card" (click)="addCard()">
+  <div class="card plus-card" (click)="addStory()">
     <p class="plus">&#43;</p>
   </div>
 </div>

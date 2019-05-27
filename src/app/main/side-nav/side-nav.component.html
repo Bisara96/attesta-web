@@ -1,38 +1,39 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
-      <mat-toolbar color = "primary">
-        <span>TestProject</span>
-        <button mat-button [matMenuTriggerFor]="projects"><i class="fas fa-edit"></i></button>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar color="primary">
+      <span>{{ selectedProject.projectName }}</span>
+      <button mat-button [matMenuTriggerFor]="projects">
+        <i class="fas fa-edit"></i>
+      </button>
     </mat-toolbar>
 
     <mat-menu #projects="matMenu" style="min-width: 120px">
-        <button mat-menu-item [matMenuTriggerFor]="project1">Project 1</button>
-        <button mat-menu-item [matMenuTriggerFor]="project2">Project 2</button>
-        <button mat-menu-item><span>New Project</span><span style="visibility: hidden">.......</span><i class="fas fa-plus-square"></i></button>
-      </mat-menu>
-      
-      <mat-menu #project1="matMenu">
-        <button mat-menu-item>Spring 1</button>
-        <button mat-menu-item>Spring 2</button>
-        <button mat-menu-item>Spring 3</button>
-        <button mat-menu-item>Spring 4</button>
-      </mat-menu>
-      
-      <mat-menu #project2="matMenu">
-        <button mat-menu-item>Spring 1</button>
-        <button mat-menu-item>Spring 2</button>
-        <button mat-menu-item>Spring 3</button>
-        <button mat-menu-item>Spring 4</button>
-      </mat-menu>
-    <mat-nav-list>
-      <h3 mat-subheader>Sprints</h3>
-      <a mat-list-item href="#">Sprint 1</a>
-      <a mat-list-item href="#">Sprint 2</a>
-      <a mat-list-item href="#">Sprint 3</a>
-    </mat-nav-list>
+      <ng-container *ngFor="let project of projectList">
+        <button mat-menu-item (click)="getProjectSprints(project.id)">
+          {{ project.projectName }}
+        </button>
+      </ng-container>
+      <button mat-menu-item>
+        <span>New Project</span><span style="visibility: hidden">.......</span
+        ><i class="fas fa-plus-square"></i>
+      </button>
+    </mat-menu>
+
+    <mat-list role="list">
+      <h3 mat-subheader class="sprint-header">Sprints<i class="fas fa-plus-square"></i></h3>
+      <mat-list-item role="listitem" *ngFor="let sprint of sprints">
+        <button mat-button (click)="selectSprint(sprint)" [ngClass]="{activeSprint: selectedSprintID === sprint.id}">
+          {{ sprint.sprintName }}      
+       </button>
+      </mat-list-item>
+    </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -41,16 +42,25 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <div>
-          <button mat-button routerLink="/" routerLinkActive="active">WhiteBoard</button>
-          <button mat-button routerLink="/testcases" routerLinkActive="active">Test Cases</button>
-          <button mat-button routerLink="/executor" routerLinkActive="active">Executor</button>
-          <button mat-button routerLink="/reports" routerLinkActive="active">Reports</button>
+        <button mat-button routerLink="/" routerLinkActive="active">
+          WhiteBoard
+        </button>
+        <button mat-button routerLink="/testcases" routerLinkActive="active">
+          Test Cases
+        </button>
+        <button mat-button routerLink="/executor" routerLinkActive="active">
+          Executor
+        </button>
+        <button mat-button routerLink="/reports" routerLinkActive="active">
+          Reports
+        </button>
       </div>
     </mat-toolbar>
-    <app-userstory-list></app-userstory-list>
+    <app-userstory-list *ngIf="showStories" [sprintID]="selectedSprintID"></app-userstory-list>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -27,10 +27,10 @@ export class MainService {
       );
   }
 
-  getUserStories (): Observable<UserStory[]> {
-    return this.httpClient.get<any>('http://localhost:8080/userstory/getall')
+  getUserStories (id): Observable<UserStory[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/sprint_stories?id='+id)
       .pipe(
-        catchError(this.handleError<any>('get all userstories', []))
+        catchError(this.handleError<any>('get sprint userstories', []))
       );
   }
 
@@ -80,6 +80,62 @@ export class MainService {
     return this.httpClient.get<any>('http://localhost:8080/record/status?id='+id)
       .pipe(
         catchError(this.handleError<any>('Check record status', []))
+      );
+  }
+
+  getProjects (): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/projects')
+      .pipe(
+        catchError(this.handleError<any>('Get all projects', []))
+      );
+  }
+
+  getSprints (): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/sprints')
+      .pipe(
+        catchError(this.handleError<any>('Get all sprints', []))
+      );
+  }
+
+  getProjectSprints (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/project_sprints?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Get project sprints', []))
+      );
+  }
+
+  addStory (story): Observable<any[]> {
+    return this.httpClient.post<any>('http://localhost:8080/userstory/add_story', story)
+    .pipe(
+      catchError(this.handleError('Add story', []))
+    );
+  }
+
+  getLastResult (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/get_testcase_lastresult?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Get test case last result', []))
+      );
+  }
+
+  getStoryTCLastResults (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/testcase/get_story_tclast?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get story testcases last results', []))
+      );
+  }
+
+  getTestCaseResults (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/report/testcase_results?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get testcase results', []))
+      );
+  }
+
+  getTestStepResults (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/report/teststep_results?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('get teststep results', []))
       );
   }
 

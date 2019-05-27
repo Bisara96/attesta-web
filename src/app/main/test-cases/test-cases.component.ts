@@ -44,9 +44,9 @@ export class TestCasesComponent implements OnInit {
   }
 
   loadUserStories() {
-    this.mainService
-      .getUserStories()
-      .subscribe(result => this.setUSListData(result));
+    // this.mainService
+    //   .getUserStories()
+    //   .subscribe(result => this.setUSListData(result));
   }
 
   setUSListData(stories: UserStory[]) {

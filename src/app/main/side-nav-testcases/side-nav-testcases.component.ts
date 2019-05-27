@@ -27,6 +27,15 @@ export class SideNavTestcasesComponent implements OnInit {
 
   userStories = [];
   nodes = [];
+  projectList = [];
+  selectedProject = {
+    id: -999,
+    projectName: 'Project Name'
+  };
+
+  selectedSprint = {
+    sprintName: 'Sprint Name'
+  };
 
   options: ITreeOptions = {
     actionMapping: {
@@ -70,7 +79,7 @@ export class SideNavTestcasesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserStories();
+    this.getProjects();
   }
 
   storyView(id) {
@@ -85,14 +94,20 @@ export class SideNavTestcasesComponent implements OnInit {
     this.isTestCaseView = true;
   }
 
-  getUserStories() {
+  selectSprint(project, sprint) {
+    this.selectedProject = project;
+    this.selectedSprint = sprint; 
+  }
+
+  getUserStories(sprintID) {
     this.mainService
-      .getUserStories()
+      .getUserStories(sprintID)
       .subscribe(result => this.setUSListData(result));
   }
 
   setUSListData(stories: UserStory[]) {
     this.userStories = stories;
+    this.nodes = [];
     stories.forEach(story => {
       let node = {};
       node["uId"] = story.id;
@@ -116,6 +131,32 @@ export class SideNavTestcasesComponent implements OnInit {
       this.mainService.getTestCases(story_id).subscribe(result => {
         resolve(result);
       });
+    });
+  }
+
+  getProjects() {
+    this.mainService.getProjects().subscribe(result => {
+      this.projectList = result;
+      if(result.length > 0) {
+        this.selectedProject = result[0];
+        this.getSprints();
+      }
+    })
+  }
+
+  getSprints() {
+    this.mainService.getSprints().subscribe(result => {
+      for(var i = 0;i < this.projectList.length;i++){
+        this.projectList[i]['sprints'] = [];
+        result.forEach(sprint => {
+          if(sprint.project.id == this.projectList[i].id)
+          this.projectList[i]['sprints'].push(sprint);
+        });
+      }
+      if(this.projectList.length > 0 && this.projectList[0].sprints.length > 0) {
+        this.selectedSprint = this.projectList[0].sprints[this.projectList[0].sprints.length-1];
+        this.getUserStories(this.selectedSprint['id']);
+      }
     });
   }
 }

@@ -6,10 +6,6 @@
     right: 0;
 }
 
-.sidenav {
-    width: 200px;
-}
-
 .sidenav .mat-toolbar {
     background: # 3f51b5;
 }
@@ -20,12 +16,18 @@
     z-index: 1;
 }
 
-.sprint-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.sidenav-container {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
-.activeSprint {
-  background-color: aliceblue;
+.sidenav {
+    width: 300px;
+}
+
+.sidenav-content-tc {
+    padding: 10px;
 }

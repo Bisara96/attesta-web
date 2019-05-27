@@ -4,27 +4,19 @@
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
       <mat-toolbar color = "primary">
-          <span>Project Login - Sprint 1</span>
+          <span>{{ selectedProject.projectName }} - {{ selectedSprint.sprintName }}</span>
           <button mat-button [matMenuTriggerFor]="projects"><i class="fas fa-edit"></i></button>
       </mat-toolbar>
 
-      <mat-menu #projects="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="project1">Project 1</button>
-          <button mat-menu-item [matMenuTriggerFor]="project2">Project 2</button>
-        </mat-menu>
-        
-        <mat-menu #project1="matMenu">
-          <button mat-menu-item>Spring 1</button>
-          <button mat-menu-item>Spring 2</button>
-          <button mat-menu-item>Spring 3</button>
-          <button mat-menu-item>Spring 4</button>
-        </mat-menu>
-        
-        <mat-menu #project2="matMenu">
-          <button mat-menu-item>Spring 1</button>
-          <button mat-menu-item>Spring 2</button>
-          <button mat-menu-item>Spring 3</button>
-          <button mat-menu-item>Spring 4</button>
+      <mat-menu #projects="matMenu" style="min-width: 120px">
+          <ng-container *ngFor="let project of projectList">
+              <button mat-menu-item [matMenuTriggerFor]="sub_menu">{{ project.projectName }}</button>
+              <mat-menu #sub_menu="matMenu">
+                <button *ngFor="let sprint of project.sprints" mat-menu-item (click)="selectSprint(project,sprint);getUserStories(sprint.id)">{{ sprint.sprintName }}</button>
+                <!-- <button mat-menu-item><span>New Sprint</span><span style="visibility: hidden">.......</span><i class="fas fa-plus-square"></i></button> -->
+              </mat-menu>
+            </ng-container>
+          <!-- <button mat-menu-item><span>New Project</span><span style="visibility: hidden">.......</span><i class="fas fa-plus-square"></i></button> -->
         </mat-menu>
         
        

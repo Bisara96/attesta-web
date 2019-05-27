@@ -1,0 +1,73 @@
+<br />
+<br />
+<div class="execution-inst-ls-div">
+    <mat-form-field>
+      <mat-label>Execution Instance</mat-label>
+      <mat-select [(value)]="selectedInstanceID">
+        <mat-option *ngFor="let inst of execInstances" [value]="inst.id" (click)="selectInstance(inst)">
+          {{ inst.executionTime }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+<br />
+<div>
+  <table class="story-test-cases-details">
+    <tr>
+      <td class="story-test-cases-details-title">Execution Instance </td>
+      <td>{{ selectedInstance.executionInstance ? selectedInstance.executionInstance : "" }}</td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Test Case ID</td>
+      <td>{{ testCase.no ? testCase.no.toUpperCase() : "" }}</td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Test Case Title</td>
+      <td>{{ testCase.title ? testCase.title : "" }}</td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Scenario</td>
+      <td>
+        {{
+          testCase.acceptanceCriteria
+            ? testCase.acceptanceCriteria.acceptanceCriteria
+            : ""
+        }}
+      </td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Executed Date</td>
+      <td>
+        {{ selectedInstance.executionTime ? selectedInstance.executionTime : "" }}
+      </td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Expected Result</td>
+      <td [ngClass]="{'pass': testCase.expectedResult == 'PASS', 'fail': testCase.expectedResult == 'FAIL'}">
+        {{ testCase.expectedResult ? testCase.expectedResult : "" }}
+      </td>
+    </tr>
+    <tr>
+        <td class="story-test-cases-details-title">Actual Result</td>
+        <td [ngClass]="{'pass': selectedInstance.result == 'PASS', 'fail': selectedInstance.result == 'FAIL'}">
+          {{ selectedInstance.result ? selectedInstance.result : "" }}
+        </td>
+      </tr>
+    <tr>
+        <td class="story-test-cases-details-title">Test Case Status</td>
+        <td [ngClass]="{'pass': selectedInstance.status == 'PASS', 'fail': selectedInstance.status == 'FAIL'}">
+          {{ selectedInstance.status ? selectedInstance.status : "" }}
+        </td>
+      </tr>
+  </table>
+</div>
+<br />
+<!-- <button mat-raised-button><i class="fas fa-play"></i></button> -->
+<br />
+<div style="width: 75%">
+  <ng2-smart-table
+    class="testcases-table"
+    [settings]="settings"
+    [source]="source"
+  ></ng2-smart-table>
+</div>
