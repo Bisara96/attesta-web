@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MainService } from '../services/main.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-side-nav',
@@ -23,7 +24,7 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService) {}
+  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -52,6 +53,16 @@ export class SideNavComponent implements OnInit {
     this.showStories = true;
     this.selectedSprint = sprint;
     this.selectedSprintID = sprint.id;
+  }
+
+  newSprint() {
+    this.mainService.addSprint(this.selectedProject.id).subscribe(result => {
+      if(result['id']){
+        this.toastr.success('Sprint created!');
+        this.sprints.push(result);
+        this.selectSprint(result);
+      }
+    });
   }
 
 }

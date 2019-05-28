@@ -98,7 +98,9 @@ export class TestCaseDetailsComponent implements OnChanges, OnInit {
   }
 
   getElementName(uiObject): string {
-    if(uiObject['placeholder'] && uiObject['placeholder'] != ''){
+    if(uiObject['label'] && uiObject['label'] != ''){
+      return uiObject['label'];
+    } else if(uiObject['placeholder'] && uiObject['placeholder'] != ''){
       return uiObject['placeholder'];
     } else if(uiObject['innerText'] && uiObject['innerText'] != ''){
       return uiObject['innerText'];

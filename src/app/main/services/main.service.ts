@@ -139,6 +139,13 @@ export class MainService {
       );
   }
 
+  addSprint (id): Observable<any[]> {
+    return this.httpClient.get<any>('http://localhost:8080/userstory/add_sprint?id='+id)
+      .pipe(
+        catchError(this.handleError<any>('Add new sprint to project', []))
+      );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
    

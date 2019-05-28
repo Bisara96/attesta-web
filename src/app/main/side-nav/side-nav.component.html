@@ -16,7 +16,7 @@
 
     <mat-menu #projects="matMenu" style="min-width: 120px">
       <ng-container *ngFor="let project of projectList">
-        <button mat-menu-item (click)="getProjectSprints(project.id)">
+        <button mat-menu-item (click)="getProjectSprints(project)">
           {{ project.projectName }}
         </button>
       </ng-container>
@@ -27,7 +27,7 @@
     </mat-menu>
 
     <mat-list role="list">
-      <h3 mat-subheader class="sprint-header">Sprints<i class="fas fa-plus-square"></i></h3>
+      <h3 mat-subheader class="sprint-header">Sprints<button mat-button (click)="newSprint()"><i class="fas fa-plus-square"></i></button></h3>
       <mat-list-item role="listitem" *ngFor="let sprint of sprints">
         <button mat-button (click)="selectSprint(sprint)" [ngClass]="{activeSprint: selectedSprintID === sprint.id}">
           {{ sprint.sprintName }}      

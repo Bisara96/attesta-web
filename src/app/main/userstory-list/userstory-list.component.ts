@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material";
 import { InitiateRecordComponent } from "../dialogs/initiate-record/initiate-record.component";
 import { cardAnimation, plusAnimation } from "./animations";
 import Swal from "sweetalert2";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-userstory-list",
@@ -21,7 +22,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
   trackByIndex = index => index;
   finishedRecording = false;
 
-  constructor(private mainService: MainService, private dialog: MatDialog) {}
+  constructor(private mainService: MainService, private dialog: MatDialog,private toastr: ToastrService) {}
 
   ngOnInit() {
     // this.loadUserStories();
@@ -85,7 +86,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
     this.dialog
       .open(AddUserStoryComponent, {
         width: "500px",
-        height: "1000px",
+        height: "700px",
         panelClass: "add-story-dialog",
         data: {
           sprint: this.sprintID
@@ -94,6 +95,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
       .afterClosed()
       .subscribe(result => {
         if(result.id) {
+          this.toastr.success('Story Created!');
           this.userStories.push(result);
         }
       });
@@ -139,7 +141,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
                 text: "Test Cases are generated and ready to be executed!",
                 showCancelButton: false,
                 showConfirmButton: true
-              }); }, 15000);
+              }); }, 35000);
               Swal.clickConfirm();
               
               // Swal.clickConfirm();

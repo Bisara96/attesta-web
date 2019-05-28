@@ -115,8 +115,9 @@ export class TestCaseReportsViewComponent implements OnInit {
   }
 
   getTestStepResults() {
-    this.data = [];
+    
     this.mainService.getTestStepResults(this.selectedInstanceID).subscribe(result => {
+      this.data = [];
       let count = 1;
       result.forEach(testStepResult => {
         this.data.push({

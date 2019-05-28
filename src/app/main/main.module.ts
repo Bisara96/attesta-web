@@ -30,6 +30,7 @@ import { SideNavReportsComponent } from './side-nav-reports/side-nav-reports.com
 import { TestCaseReportsViewComponent } from './test-case-reports-view/test-case-reports-view.component';
 import { ViewScreenshotComponent } from './view-screenshot/view-screenshot.component';
 import { TestStepResultSsViewComponent } from './test-step-result-ss-view/test-step-result-ss-view.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { TestStepResultSsViewComponent } from './test-step-result-ss-view/test-s
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    ImageViewerModule
+    ImageViewerModule,
+    ToastrModule.forRoot()
   ],
   entryComponents: [
     InitiateRecordComponent,

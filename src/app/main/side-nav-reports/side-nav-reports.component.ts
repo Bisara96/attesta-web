@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { MainService } from '../services/main.service';
-import { TreeComponent, ITreeOptions } from 'angular-tree-component';
-import { TreeNode } from '@angular/router/src/utils/tree';
+import { TreeComponent, ITreeOptions, TreeNode } from 'angular-tree-component';
 
 @Component({
   selector: 'app-side-nav-reports',

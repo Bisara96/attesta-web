@@ -130,6 +130,7 @@ export class ExecutorViewContentComponent implements OnChanges, OnInit {
   }
 
   loadTestCasesData(index) {
+    this.stories[index]['testCases'].sort((a,b) => a.no.localeCompare(b.no));
     this.source = new LocalDataSource(this.stories[index]['testCases']);
   }
 
