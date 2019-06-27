@@ -1,0 +1,33 @@
+button {
+	width: 15px;
+	height: 15px;
+	font-size: 0;
+	background-color: green;
+	border: 0;
+	border-radius: 35px;
+	margin: 18px;
+	outline: none;
+}
+
+.notRec{
+	background-color: darkgreen;
+}
+
+.Rec{
+	animation-name: pulse;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes pulse{
+	0%{
+		box-shadow: 0px 0px 5px 0px rgba(0, 128, 0, 0.45);
+	}
+	65%{
+		box-shadow: 0px 0px 5px 8px rgba(0, 128, 0, 0.45);
+	}
+	90%{
+		box-shadow: 0px 0px 5px 11px rgba(0, 128, 0, 0.45);
+	}
+}

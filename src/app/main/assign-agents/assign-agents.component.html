@@ -1,0 +1,72 @@
+<div style="display: flex;height: 100%;">
+  <div style="flex: 1">
+    <div style="height: 100%;">
+      <mat-card style="height: 20%;">
+          <h5 mat-card-title style="letter-spacing: 10px;text-align: center;font-size: 17px;">AVAILABLE AGENTS</h5>
+          <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Search" aria-label="Agents" matInput [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let agent of agents" [value]="agent.name">
+                    {{agent.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+      </mat-card>
+      <mat-card style="height: 80%">
+        <mat-chip-list aria-label="UNassigned Agents">
+            <mat-chip color="{{ agent.alive ? 'primary' : 'warn' }}" *ngFor="let agent of agents;let i = index" [removable]="removable" selected>
+                <i class="fab fa-windows" *ngIf="agent.platform == 'windows'" style="margin-right: 7px"></i>
+                <i class="fab fa-linux" *ngIf="agent.platform == 'linux'" style="margin-right: 7px"></i>
+                <i class="fab fa-apple" *ngIf="agent.platform == 'mac'" style="margin-right: 7px"></i>
+  
+                <i class="fab fa-chrome" *ngIf="agent.browser == 'chrome'" style="margin-right: 7px"></i>
+                <i class="fab fa-firefox" *ngIf="agent.browser == 'firefox'" style="margin-right: 7px"></i>
+                <i class="fab fa-internet-explorer" *ngIf="agent.browser == 'internetexplorer'" style="margin-right: 7px"></i>
+                <i class="fab fa-safari" *ngIf="agent.browser == 'safari'" style="margin-right: 7px"></i>
+              <span>{{ agent.name }}</span>
+              <mat-icon matChipRemove *ngIf="removable" (click)="assignAgent(agent,i)">add</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+      </mat-card>
+    </div>
+  </div>
+  <mat-divider
+    [vertical]="true"
+    style="margin-right: 10px;margin-left: 10px"
+  ></mat-divider>
+  <div style="flex: 1">
+    <div style="height: 100%;">
+      <mat-card>
+          <h5 mat-card-title style="letter-spacing: 10px;text-align: center;font-size: 17px;">ASSIGNED AGENTS</h5>
+          <form class="example-form">
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Search" aria-label="Agents" matInput [matAutocomplete]="auto2">
+                <mat-autocomplete #auto2="matAutocomplete">
+                  <mat-option *ngFor="let sAgent of storyAgents " [value]="sAgent.name">
+                    {{sAgent.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+      </mat-card>
+      <mat-card>
+        <mat-chip-list aria-label="Assigned Agents">
+          <mat-chip color="{{ sAgent.alive ? 'primary' : 'warn' }}" [removable]="removable" *ngFor="let sAgent of storyAgents;let i = index" selected>
+              <i class="fab fa-windows" *ngIf="sAgent.platform == 'windows'" style="margin-right: 7px"></i>
+              <i class="fab fa-linux" *ngIf="sAgent.platform == 'linux'" style="margin-right: 7px"></i>
+              <i class="fab fa-apple" *ngIf="sAgent.platform == 'mac'" style="margin-right: 7px"></i>
+
+              <i class="fab fa-chrome" *ngIf="sAgent.browser == 'chrome'" style="margin-right: 7px"></i>
+              <i class="fab fa-firefox" *ngIf="sAgent.browser == 'firefox'" style="margin-right: 7px"></i>
+              <i class="fab fa-internet-explorer" *ngIf="sAgent.browser == 'internetexplorer'" style="margin-right: 7px"></i>
+              <i class="fab fa-safari" *ngIf="sAgent.browser == 'safari'" style="margin-right: 7px"></i>
+            <span>{{ sAgent.name }}</span>
+            <mat-icon matChipRemove *ngIf="removable" (click)="unassignAgent(sAgent,i)">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<h2 mat-dialog-title style="letter-spacing: 10px;text-align: center">AGENT CONFIGURATION</h2>
+<br>
+<div style="display: flex;flex-direction: column" class="agent-configs">
+    <div style="display: flex;flex-direction: row">
+        <div style="flex: 1;line-height: 65px;vertical-align: middle">Name</div>
+        <div style="flex: 4">
+            <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="name" required>
+              </mat-form-field>
+        </div>
+      </div>
+      <hr/>
+  <div style="display: flex;flex-direction: row">
+    <div style="flex: 1;line-height: 50px;vertical-align: middle">Type</div>
+    <div style="flex: 4">
+      <mat-button-toggle-group name="agentType" [(ngModel)]="agentType" aria-label="Agent Type">
+        <mat-button-toggle value="executor">Executor</mat-button-toggle>
+        <mat-button-toggle value="recorder">Recorder</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <hr/>
+  <div style="display: flex;flex-direction: row">
+    <div style="flex: 1;line-height: 50px;vertical-align: middle">Browser</div>
+    <div style="flex: 4">
+      <mat-button-toggle-group name="browser" aria-label="Browser" [(ngModel)]="browser">
+        <mat-button-toggle value="chrome"><i class="fab fa-chrome" style="margin-right: 7px"></i><span>Chrome</span></mat-button-toggle>
+        <mat-button-toggle value="firefox"><i class="fab fa-firefox" style="margin-right: 7px"></i><span>Firefox</span></mat-button-toggle>
+        <mat-button-toggle value="internetexplorer"><i class="fab fa-internet-explorer" style="margin-right: 7px"></i><span>Internet Explorer</span></mat-button-toggle>
+        <mat-button-toggle value="safari"><i class="fab fa-safari" style="margin-right: 7px"></i><span>Safari</span></mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <hr/>
+  <div style="display: flex;flex-direction: row">
+    <div style="flex: 1;line-height: 50px;vertical-align: middle">Platform</div>
+    <div style="flex: 4">
+      <mat-button-toggle-group name="platform" aria-label="Platform" [(ngModel)]="platform">
+        <mat-button-toggle value="windows"><i class="fab fa-windows" style="margin-right: 7px"></i><span>Windows</span></mat-button-toggle>
+        <mat-button-toggle value="linux"><i class="fab fa-linux" style="margin-right: 7px"></i><span>Linux</span></mat-button-toggle>
+        <mat-button-toggle value="mac"><i class="fab fa-apple" style="margin-right: 7px"></i><span>Mac</span></mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>
+<br>
+<div style="float: right;display: flex;">
+    <button class="mat-raised-button" style="margin-right: 10px" (click)="downloadAgent()">Download</button>
+    <mat-spinner *ngIf="showSpinner" style="margin-top: auto;margin-bottom: auto" [diameter]="20"></mat-spinner>
+</div>

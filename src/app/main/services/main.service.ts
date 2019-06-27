@@ -161,6 +161,34 @@ export class MainService {
     window.open(this.apiURL + '/agent/get_agent?zipName=' + url);
   }
 
+  getAssignedAgents (storyID): Observable<any[]> {
+    return this.httpClient.get<any>(this.apiURL + '/agent/get_assigned_agents?storyID=' + storyID)
+      .pipe(
+        catchError(this.handleError<any>('get assigned agents', []))
+      );
+  }
+
+  getUNAssignedAgents (storyID): Observable<any[]> {
+    return this.httpClient.get<any>(this.apiURL + '/agent/get_unassigned_agents?storyID=' + storyID)
+      .pipe(
+        catchError(this.handleError<any>('get unassigned agents', []))
+      );
+  }
+
+  assignAgent (storyID, agentID): Observable<any[]> {
+    return this.httpClient.get(this.apiURL + '/agent/assign_agent?storyID=' + storyID+'&agentID='+agentID, {responseType: 'text'})
+      .pipe(
+        catchError(this.handleError<any>('assign agent', []))
+      );
+  }
+
+  unassignAgent (storyID, agentID): Observable<any[]> {
+    return this.httpClient.get(this.apiURL + '/agent/remove_agent?storyID=' + storyID+'&agentID='+agentID, {responseType: 'text'})
+      .pipe(
+        catchError(this.handleError<any>('unassign agent', []))
+      );
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
    

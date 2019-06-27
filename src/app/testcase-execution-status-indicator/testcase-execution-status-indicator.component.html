@@ -1,0 +1,15 @@
+<div *ngIf="renderValue == 'RUNNING'">
+  <button id="recButton" class="Rec"></button>
+</div>
+
+<div *ngIf="renderValue == ''">
+  <mat-chip-list>
+    <mat-chip color="accent" selected>Pending</mat-chip>
+  </mat-chip-list>
+</div>
+
+<div *ngIf="renderValue == 'EXECUTED'">
+  <mat-chip-list>
+    <mat-chip color="primary" selected>Executed</mat-chip>
+  </mat-chip-list>
+</div>

@@ -1,0 +1,16 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let story of userstories" [expanded]="story.executing == true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ story.description }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng2-smart-table
+    class="testcases-table"
+    [settings]="settings"
+    (custom)="executeTestCase($event)"
+    [source]="story.tableData"
+    #table></ng2-smart-table>
+   
+  </mat-expansion-panel>
+</mat-accordion>
