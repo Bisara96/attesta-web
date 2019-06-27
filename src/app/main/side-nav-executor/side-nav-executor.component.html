@@ -27,7 +27,7 @@
         <mat-list-item role="listitem" *ngFor="let sprint of sprints">
           <div class="sprints_list">
             <button mat-button (click)="selectSprint(sprint)">{{ sprint.sprintName }}</button>
-            <button mat-button>
+            <button mat-button (click)="executeSprint(sprint.id)">
               <i class="fas fa-play sprint-play-btn"></i>
             </button>
           </div>

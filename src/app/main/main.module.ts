@@ -10,7 +10,7 @@ import { ImageViewerModule } from '@hallysonh/ngx-imageviewer';
 import { UserstoryTestStepsComponent } from './userstory-test-steps/userstory-test-steps.component';
 import { UserstoryAcceptanceCriteriaComponent } from './userstory-acceptance-criteria/userstory-acceptance-criteria.component';
 import { InitiateRecordComponent } from './dialogs/initiate-record/initiate-record.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestCasesComponent } from './test-cases/test-cases.component';
 import { TreeModule } from 'angular-tree-component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -31,6 +31,11 @@ import { TestCaseReportsViewComponent } from './test-case-reports-view/test-case
 import { ViewScreenshotComponent } from './view-screenshot/view-screenshot.component';
 import { TestStepResultSsViewComponent } from './test-step-result-ss-view/test-step-result-ss-view.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ExecuteSprintComponent } from './execute-sprint/execute-sprint.component';
+import { TestcaseExecutionStatusIndicatorComponent } from '../testcase-execution-status-indicator/testcase-execution-status-indicator.component';
+import { NewAgentConfigurationComponent } from './new-agent-configuration/new-agent-configuration.component';
+import { CookieService } from 'ngx-cookie-service';
+import { AssignAgentsComponent } from './assign-agents/assign-agents.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +59,13 @@ import { ToastrModule } from 'ngx-toastr';
     SideNavReportsComponent,
     TestCaseReportsViewComponent,
     ViewScreenshotComponent,
-    TestStepResultSsViewComponent
+    TestStepResultSsViewComponent,
+    ExecuteSprintComponent,
+    ExecuteSprintComponent,
+    TestcaseExecutionStatusIndicatorComponent,
+    TestcaseExecutionStatusIndicatorComponent,
+    NewAgentConfigurationComponent,
+    AssignAgentsComponent
   ],
   imports: [
     CommonModule,
@@ -70,16 +81,22 @@ import { ToastrModule } from 'ngx-toastr';
     MatIconModule,
     MatListModule,
     ImageViewerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
   entryComponents: [
     InitiateRecordComponent,
     AddUserStoryComponent,
     TestStepResultSsViewComponent,
-    ViewScreenshotComponent
+    ViewScreenshotComponent,
+    ExecuteSprintComponent,
+    TestcaseExecutionStatusIndicatorComponent,
+    NewAgentConfigurationComponent,
+    AssignAgentsComponent
   ],
   providers: [
-    MainService
+    MainService,
+    CookieService
   ]
 })
 export class MainModule { }

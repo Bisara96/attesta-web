@@ -2,6 +2,8 @@ import { OnChanges, SimpleChanges } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { MainService } from './../services/main.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { AssignAgentsComponent } from '../assign-agents/assign-agents.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-executor-view-content',
@@ -82,7 +84,7 @@ export class ExecutorViewContentComponent implements OnChanges, OnInit {
   data = [  
   ];
 
-  constructor(private mainService: MainService) { 
+  constructor(private mainService: MainService,private dialog: MatDialog) { 
   }
 
   ngOnInit() {
@@ -138,6 +140,18 @@ export class ExecutorViewContentComponent implements OnChanges, OnInit {
     this.mainService.executeTestCase(event.data.id).subscribe(result => {
       console.log(result);
     });
+  }
+
+  viewAssignedAgents() {
+    this.dialog
+      .open(AssignAgentsComponent, {
+        width: "650px",
+        height: "450px"
+      })
+      .afterClosed()
+      .subscribe(result => {
+        // this.recordUserStory(result.url, result.id);
+      });
   }
 
 }

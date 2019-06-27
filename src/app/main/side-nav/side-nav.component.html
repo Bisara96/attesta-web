@@ -1,12 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)"
-  >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">
       <span>{{ selectedProject.projectName }}</span>
       <button mat-button [matMenuTriggerFor]="projects">
@@ -21,29 +16,24 @@
         </button>
       </ng-container>
       <button mat-menu-item>
-        <span>New Project</span><span style="visibility: hidden">.......</span
-        ><i class="fas fa-plus-square"></i>
+        <span>New Project</span><span style="visibility: hidden">.......</span><i class="fas fa-plus-square"></i>
       </button>
     </mat-menu>
 
     <mat-list role="list">
-      <h3 mat-subheader class="sprint-header">Sprints<button mat-button (click)="newSprint()"><i class="fas fa-plus-square"></i></button></h3>
+      <h3 mat-subheader class="sprint-header">Sprints<button mat-button (click)="newSprint()"><i
+            class="fas fa-plus-square"></i></button></h3>
       <mat-list-item role="listitem" *ngFor="let sprint of sprints">
         <button mat-button (click)="selectSprint(sprint)" [ngClass]="{activeSprint: selectedSprintID === sprint.id}">
-          {{ sprint.sprintName }}      
-       </button>
+          {{ sprint.sprintName }}
+        </button>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <div>
@@ -58,6 +48,12 @@
         </button>
         <button mat-button routerLink="/reports" routerLinkActive="active">
           Reports
+        </button>
+      </div>
+      <div style="margin-left: auto">
+        <button mat-button (click)="addAgent()">
+            <i class="fas fa-user-secret" style="margin-right: 7px"></i>
+          <span>Agent</span>
         </button>
       </div>
     </mat-toolbar>

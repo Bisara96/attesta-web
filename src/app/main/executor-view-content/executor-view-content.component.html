@@ -13,8 +13,13 @@
   </mat-card>
   
   <mat-card class="tc-card" [style.minHeight]="'100%'" [style.minWidth]="'45%'">
-    <mat-card-header>
-      <mat-card-title>Test Cases</mat-card-title>
+    <mat-card-header style="width: 100%" class="executor-testcases">
+      <mat-card-title class="executor-testcases-card-header">Test Cases 
+        <button mat-stroked-button (click)="viewAssignedAgents()">
+        <i class="fas fa-user-secret" style="margin-right: 7px"></i>
+        <span><span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">Assigned Agents</span></span>
+      </button>
+    </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <ng2-smart-table

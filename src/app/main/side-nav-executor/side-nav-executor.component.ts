@@ -1,8 +1,10 @@
+import { ExecuteSprintComponent } from './../execute-sprint/execute-sprint.component';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MainService } from '../services/main.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-side-nav-executor',
@@ -23,7 +25,7 @@ export class SideNavExecutorComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService) { }
+  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProjects();
@@ -52,6 +54,21 @@ export class SideNavExecutorComponent implements OnInit {
     this.showExecutionView = true;
     this.selectedSprint = sprint;
     this.selectedSprintID = sprint.id;
+  }
+
+  executeSprint(id: number) {
+    this.dialog
+      .open(ExecuteSprintComponent, {
+        width: "1000px",
+        height: "800px",
+        data: {
+          id: id
+        }
+      })
+      .afterClosed()
+      .subscribe(result => {
+        // this.recordUserStory(result.url, result.id);
+      });
   }
 
 }

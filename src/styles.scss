@@ -1,33 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .add-story-dialog {
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
-    margin: 10px 20px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(14, 167, 194);
-    padding: 22px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  margin: 10px 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(14, 167, 194);
+  padding: 22px;
 }
 
 mat-dialog-container {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .ac-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .ac-list > .mat-list-item-content {
-    width: 100% !important;
+  width: 100% !important;
+}
+
+// .mat-button-toggle-label-content {
+//     color: red;
+// }
+
+.agent-configs {
+  .mat-button-toggle-checked {
+    background-color: #ee4c2c;
+    color: white !important;
+  }
+
+  .mat-button-toggle-focus-overlay {
+    background-color: darken(black, 0%) !important;
+    color: white !important;
+  }
+}
+
+.executor-testcases {
+  .mat-card-header-text {
+    width: 100%;
+  }
 }

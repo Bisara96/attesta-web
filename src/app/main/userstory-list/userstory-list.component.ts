@@ -8,6 +8,7 @@ import { InitiateRecordComponent } from "../dialogs/initiate-record/initiate-rec
 import { cardAnimation, plusAnimation } from "./animations";
 import Swal from "sweetalert2";
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: "app-userstory-list",
@@ -22,7 +23,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
   trackByIndex = index => index;
   finishedRecording = false;
 
-  constructor(private mainService: MainService, private dialog: MatDialog,private toastr: ToastrService) {}
+  constructor(private mainService: MainService, private dialog: MatDialog,private toastr: ToastrService, private cookieService: CookieService) {}
 
   ngOnInit() {
     // this.loadUserStories();
@@ -69,7 +70,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
   }
 
   recordUserStory(url: string, id: number) {
-    this.mainService.initiateRecording(url, id).subscribe();
+    this.mainService.initiateRecording(url, id, '').subscribe();
   }
 
   refreshUserStory(id: number, index: number) {
@@ -106,6 +107,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
   }
 
   openGenerateTCDialog(id: number) {
+    const recorderAgent = this.cookieService.get('recorder');
     Swal.mixin({
       progressSteps: ["1", "2", "3", "4"]
     })
@@ -124,7 +126,7 @@ export class UserstoryListComponent implements OnChanges, OnInit {
               showCancelButton: false,
               showConfirmButton: false
             });
-            this.mainService.initiateRecording(result, id).subscribe(result => {
+            this.mainService.initiateRecording(result, id, recorderAgent).subscribe(result => {
               Swal.insertQueueStep({
                 imageUrl: "assets/images/ajax-loader1.gif",
                 title: "Generating Test Cases",

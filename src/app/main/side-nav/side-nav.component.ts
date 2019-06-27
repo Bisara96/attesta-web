@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MainService } from '../services/main.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material';
+import { NewAgentConfigurationComponent } from '../new-agent-configuration/new-agent-configuration.component';
 
 @Component({
   selector: 'app-side-nav',
@@ -24,7 +26,7 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService,private toastr: ToastrService) {}
+  constructor(private breakpointObserver: BreakpointObserver,private mainService: MainService,private toastr: ToastrService,private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -63,6 +65,18 @@ export class SideNavComponent implements OnInit {
         this.selectSprint(result);
       }
     });
+  }
+
+  addAgent() {
+    this.dialog
+      .open(NewAgentConfigurationComponent, {
+        width: "650px",
+        height: "450px"
+      })
+      .afterClosed()
+      .subscribe(result => {
+        // this.recordUserStory(result.url, result.id);
+      });
   }
 
 }
