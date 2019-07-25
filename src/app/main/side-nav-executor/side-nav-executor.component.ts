@@ -5,6 +5,7 @@ import { MainService } from '../services/main.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
+import { NewAgentConfigurationComponent } from '../new-agent-configuration/new-agent-configuration.component';
 
 @Component({
   selector: 'app-side-nav-executor',
@@ -64,6 +65,18 @@ export class SideNavExecutorComponent implements OnInit {
         data: {
           id: id
         }
+      })
+      .afterClosed()
+      .subscribe(result => {
+        // this.recordUserStory(result.url, result.id);
+      });
+  }
+
+  addAgent() {
+    this.dialog
+      .open(NewAgentConfigurationComponent, {
+        width: "650px",
+        height: "450px"
       })
       .afterClosed()
       .subscribe(result => {

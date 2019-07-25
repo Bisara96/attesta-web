@@ -2,6 +2,7 @@ import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
 import { LocalDataSource } from "ng2-smart-table";
 import { MainService } from "../services/main.service";
 import { TestStepResultSsViewComponent } from '../test-step-result-ss-view/test-step-result-ss-view.component';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: "app-test-case-reports-view",
@@ -75,7 +76,7 @@ export class TestCaseReportsViewComponent implements OnInit {
 
   data = [];
 
-  constructor(private mainService: MainService) {
+  constructor(private mainService: MainService,private ngxService: NgxUiLoaderService) {
     this.source = new LocalDataSource(this.data);
   }
 
@@ -90,8 +91,10 @@ export class TestCaseReportsViewComponent implements OnInit {
   }
 
   getTestCase() {
+    this.ngxService.start();
     this.mainService.getTestCase(this.testCaseID).subscribe(result => {
       this.testCase = result;
+      this.ngxService.stop();
     });
   }
 
@@ -101,21 +104,27 @@ export class TestCaseReportsViewComponent implements OnInit {
 
   getTestCaseResults() {
     this.mainService.getTestCaseResults(this.testCaseID).subscribe(result => {
+      this.ngxService.start();
       this.execInstances = result;
       this.selectedInstance = result[0];
       this.selectedInstanceID = result[0].id;
       this.getTestStepResults();
+      this.ngxService.stop();
     });
   }
 
   selectInstance(inst) {
+    // this.ngxService.start();
+    // setTimeout(() => {
+    //   this.ngxService.stop();
+    // }, 5000);
     this.selectedInstance = inst;
     this.selectedInstanceID = inst.id;
     this.getTestStepResults();
   }
 
   getTestStepResults() {
-    
+    this.ngxService.start();
     this.mainService.getTestStepResults(this.selectedInstanceID).subscribe(result => {
       this.data = [];
       let count = 1;
@@ -131,6 +140,7 @@ export class TestCaseReportsViewComponent implements OnInit {
         count++;
       });
       this.source = new LocalDataSource(this.data);
+      this.ngxService.stop();
     });
   }
 

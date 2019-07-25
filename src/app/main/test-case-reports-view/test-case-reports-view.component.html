@@ -15,7 +15,22 @@
   <table class="story-test-cases-details">
     <tr>
       <td class="story-test-cases-details-title">Execution Instance </td>
-      <td>{{ selectedInstance.executionInstance ? selectedInstance.executionInstance : "" }}</td>
+      <td style="display: flex;">{{ selectedInstance.executionInstance ? selectedInstance.executionInstance : "" }}</td>
+    </tr>
+    <tr>
+      <td class="story-test-cases-details-title">Agent </td>
+      <td style="display: flex;">
+        <div *ngIf="selectedInstance && selectedInstance.agent">
+          <i class="fab fa-windows" *ngIf="selectedInstance.agent.platform == 'windows'" style="margin-right: 7px"></i>
+          <i class="fab fa-linux" *ngIf="selectedInstance.agent.platform == 'linux'" style="margin-right: 7px"></i>
+          <i class="fab fa-apple" *ngIf="selectedInstance.agent.platform == 'mac'" style="margin-right: 7px"></i>
+  
+          <i class="fab fa-chrome" *ngIf="selectedInstance.agent.browser == 'chrome'" style="margin-right: 7px"></i>
+          <i class="fab fa-firefox" *ngIf="selectedInstance.agent.browser == 'firefox'" style="margin-right: 7px"></i>
+          <i class="fab fa-internet-explorer" *ngIf="selectedInstance.agent.browser == 'internetexplorer'" style="margin-right: 7px"></i>
+          <i class="fab fa-safari" *ngIf="selectedInstance.agent.browser == 'safari'" style="margin-right: 7px"></i>
+        </div>
+        {{ selectedInstance && selectedInstance.agent ? selectedInstance.agent.name : "" }}</td>
     </tr>
     <tr>
       <td class="story-test-cases-details-title">Test Case ID</td>

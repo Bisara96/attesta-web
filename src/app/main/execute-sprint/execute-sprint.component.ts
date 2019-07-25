@@ -1,11 +1,12 @@
 import { LocalDataSource } from 'ng2-smart-table';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { AddUserStoryComponent } from '../add-user-story/add-user-story.component';
 import { MainService } from '../services/main.service';
 import {interval} from 'rxjs';
 import {take} from 'rxjs/operators';
 import { TestcaseExecutionStatusIndicatorComponent } from 'src/app/testcase-execution-status-indicator/testcase-execution-status-indicator.component';
+import { AssignAgentsComponent } from '../assign-agents/assign-agents.component';
 
 @Component({
   selector: 'app-execute-sprint',
@@ -24,6 +25,7 @@ export class ExecuteSprintComponent implements OnInit {
   pending = false;
   timer;
   timersub;
+  storyAgents: any[] = [];
 
   settings = {
     columns: {
@@ -68,14 +70,14 @@ export class ExecuteSprintComponent implements OnInit {
 
 
   constructor(
-    public dialogRef: MatDialogRef<AddUserStoryComponent>,
+    private dialog: MatDialog,public dialogRef: MatDialogRef<AddUserStoryComponent>,
     private mainService: MainService,@Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.sprintID = data.id;
   }
 
   ngOnInit() {
-    this.getSprintStories();  
+    this.getSprintStories();
 
  
     // this.executeStories();
@@ -123,15 +125,44 @@ export class ExecuteSprintComponent implements OnInit {
       this.no_of_stories = result.length;
       this.userstories = [];
       result.forEach(story => {
-        this.mainService.getTestCases(story.id).subscribe(testCases => {
-          story['testcases'] = testCases;
-          story['tableData'] = new LocalDataSource(testCases);
-          story['executing'] = false;
-          this.userstories.push(story);
-          this.loaded_stories += 1;
-          if(this.no_of_stories == this.loaded_stories){
-            this.executeStories();
-            this.intervalTimer();
+        this.mainService.getAssignedAgents(story.id).subscribe(storyAgents => {
+          if(storyAgents.length == 0) {
+            this.dialog
+              .open(AssignAgentsComponent, {
+                width: "800px",
+                height: "550px",
+                autoFocus: false,
+                data: {
+                  storyID: story.id,
+                  cancelable: false
+                }
+              })
+              .afterClosed()
+              .subscribe(result => {
+                this.mainService.getTestCases(story.id).subscribe(testCases => {
+                  story['testcases'] = testCases;
+                  story['tableData'] = new LocalDataSource(testCases);
+                  story['executing'] = false;
+                  this.userstories.push(story);
+                  this.loaded_stories += 1;
+                  if(this.no_of_stories == this.loaded_stories){
+                    this.executeStories();
+                    this.intervalTimer();
+                  }
+                });
+              });
+          } else {
+            this.mainService.getTestCases(story.id).subscribe(testCases => {
+              story['testcases'] = testCases;
+              story['tableData'] = new LocalDataSource(testCases);
+              story['executing'] = false;
+              this.userstories.push(story);
+              this.loaded_stories += 1;
+              if(this.no_of_stories == this.loaded_stories){
+                this.executeStories();
+                this.intervalTimer();
+              }
+            });
           }
         });
       })
@@ -166,6 +197,10 @@ export class ExecuteSprintComponent implements OnInit {
 
   removeFromQue() {
     this.execution_que.pop();
+  }
+
+  viewAssignedAgents(storyID) {
+    
   }
 
 

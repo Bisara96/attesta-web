@@ -61,6 +61,12 @@
           Reports
         </button>
       </div>
+      <div style="margin-left: auto">
+        <button mat-button (click)="addAgent()">
+            <i class="fas fa-user-secret" style="margin-right: 7px"></i>
+          <span>Agent</span>
+        </button>
+      </div>
     </mat-toolbar>
     <app-executor-view-content *ngIf="showExecutionView" [sprintID]="selectedSprintID"></app-executor-view-content>
   </mat-sidenav-content>

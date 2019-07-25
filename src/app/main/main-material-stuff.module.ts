@@ -24,7 +24,7 @@ import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, M
     MatSelectModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   exports: [
     MatExpansionModule,
@@ -47,7 +47,7 @@ import { MatExpansionModule, MatFormFieldModule, MatTabsModule, MatListModule, M
     MatSelectModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ]
 })
 export class MainMaterialStuffModule { }

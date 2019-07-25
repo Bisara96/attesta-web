@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiHostName: '192.168.8.101',
+  apiHostName: '192.168.8.100',
   apiPort: 8080,
   apiProtocol: 'http'
 };

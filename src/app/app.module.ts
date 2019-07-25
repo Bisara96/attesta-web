@@ -9,6 +9,7 @@ import { AppNavBarComponent } from './app-nav-bar/app-nav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-    })
+    }),
+    NgxUiLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

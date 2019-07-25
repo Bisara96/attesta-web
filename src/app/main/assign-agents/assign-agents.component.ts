@@ -14,10 +14,12 @@ export class AssignAgentsComponent implements OnInit {
   storyID;
   storyAgents: any[];
   agents: any[];
+  cancelable: true;
 
   constructor(public dialogRef: MatDialogRef<AddUserStoryComponent>,
     private mainService: MainService,@Inject(MAT_DIALOG_DATA) public data: any) { 
       this.storyID = data.storyID;
+      this.cancelable = data.cancelable;
     }
 
   ngOnInit() {
@@ -45,6 +47,10 @@ export class AssignAgentsComponent implements OnInit {
       this.agents.push(agent);
       this.storyAgents.splice(index, 1);
     })
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

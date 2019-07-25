@@ -13,7 +13,8 @@ import { MatDialog } from '@angular/material';
 export class ExecutorViewContentComponent implements OnChanges, OnInit {
 
   @Input() sprintID;
-  storyID;
+  storyID = -999;
+  storyAgents: any[] = [];
 
   stories = [];
 
@@ -104,6 +105,7 @@ export class ExecutorViewContentComponent implements OnChanges, OnInit {
   }
 
   getStoryTestCases(index,story_id) {
+    this.getStoryAgents();
     this.storyID = story_id;
     if(this.stories[index].testCases && this.stories[index].testCases.length > 0){
       this.loadTestCasesData(index);
@@ -151,13 +153,18 @@ export class ExecutorViewContentComponent implements OnChanges, OnInit {
         height: "550px",
         autoFocus: false,
         data: {
-          storyID: this.storyID
+          storyID: this.storyID,
+          cancelable: true
         }
       })
       .afterClosed()
       .subscribe(result => {
         // this.recordUserStory(result.url, result.id);
       });
+  }
+
+  getStoryAgents() {
+    this.mainService.getAssignedAgents(this.storyID).subscribe(result => this.storyAgents = result);
   }
 
 }

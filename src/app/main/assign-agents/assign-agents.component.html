@@ -1,4 +1,4 @@
-<div style="display: flex;height: 100%;">
+<div style="display: flex;height: calc(100% - 45px);">
   <div style="flex: 1">
     <div style="height: 100%;">
       <mat-card style="height: 20%;">
@@ -38,7 +38,7 @@
   ></mat-divider>
   <div style="flex: 1">
     <div style="height: 100%;">
-      <mat-card>
+      <mat-card style="height: 20%;">
           <h5 mat-card-title style="letter-spacing: 10px;text-align: center;font-size: 17px;">ASSIGNED AGENTS</h5>
           <form class="example-form">
               <mat-form-field class="example-full-width">
@@ -51,7 +51,7 @@
               </mat-form-field>
             </form>
       </mat-card>
-      <mat-card>
+      <mat-card style="height: 80%">
         <mat-chip-list aria-label="Assigned Agents">
           <mat-chip color="{{ sAgent.alive ? 'primary' : 'warn' }}" [removable]="removable" *ngFor="let sAgent of storyAgents;let i = index" selected>
               <i class="fab fa-windows" *ngIf="sAgent.platform == 'windows'" style="margin-right: 7px"></i>
@@ -69,4 +69,8 @@
       </mat-card>
     </div>
   </div>
+</div>
+<div mat-dialog-actions style="float: right">
+  <button mat-button (click)="onNoClick()" *ngIf="false">Cancel</button>
+  <button mat-button [mat-dialog-close]="done" [disabled]="!cancelable && storyAgents.length <= 0" cdkFocusInitial>Done</button>
 </div>
